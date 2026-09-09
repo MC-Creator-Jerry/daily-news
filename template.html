@@ -315,11 +315,16 @@
   .item.web-fs {
     position: fixed;
     inset: 0;
+    top: 0; right: 0; bottom: 0; left: 0;
     z-index: 9999;
+    margin: 0;
+    border-bottom: none;
     background: var(--card-bg);
     padding: 36px clamp(16px, 5vw, 72px);
     overflow: auto;
+    width: 100%;
     max-width: none;
+    max-height: none;
     box-sizing: border-box;
     box-shadow: 0 0 0 100vmax rgba(0,0,0,.55);
   }
@@ -1374,9 +1379,12 @@ var safeLS = (function() {
     semiconductor:{ src:'img/sec-semiconductor.jpg',c:['#16455c','#5cc4ec'], motif:'chip',        alt:[] },
     space:       { src:'img/sec-space.jpg',         c:['#0a0a23','#4a3c8e'], motif:'rocket',      alt:[] },
     society:     { src:'img/sec-society.jpg',       c:['#3a4a5a','#8aa6bd'], motif:'network',     alt:[] },
+    trending:    { src:'img/banner.jpg',            c:['#16356b','#3b82f6'], motif:'peaks',        alt:[] },
+    tech:        { src:'img/sec-semiconductor.jpg', c:['#16455c','#5cc4ec'], motif:'chip',          alt:[] },
+    product:     { src:'img/sec-industry.jpg',      c:['#274a22','#5f9a3e'], motif:'gear',          alt:[] },
     cover:       { src:'img/banner.jpg',            c:['#16356b','#3b82f6'], motif:'peaks',       alt:[] }
   };
-  var SECTION_KIND = ['military','finance','ai','politics','industry','energy','health','semiconductor','space','society'];
+  var SECTION_KIND = ['trending','military','finance','ai','tech','politics','industry','energy','health','semiconductor','space','product','society'];
 
   function svgMotif(kind, w, h) {
     // Distinct, text-free geometric icon per category so images correspond to the topic.
@@ -2092,6 +2100,7 @@ var safeLS = (function() {
     var btn = item.querySelector('.zoom-btn');
     if (btn) btn.innerHTML = zoomBtnHtml(body.classList.contains('zoomed'));
   };
+  var fsReturn = null; // 进入网页全屏前记录 .item 的父节点与相邻兄弟，退出时归位
   window.toggleFsItem = function(idOrEl) {
     var item = (typeof idOrEl === 'string') ? document.getElementById(idOrEl) : idOrEl;
     if (!item) return;
@@ -2103,11 +2112,21 @@ var safeLS = (function() {
         var fb = item.querySelector('.item-title .fold-btn');
         if (fb) fb.innerHTML = foldBtnHtml(true);
       }
+      // 关键修复：把条目摘到 document.body 末端再用 fixed 全屏。
+      // 否则祖先 .section-card 的 transform(进场动画) / overflow:hidden 会成为
+      // fixed 的包含块，把全屏层裁成一条小碎片（“无法正常显示”）。
+      fsReturn = { parent: item.parentNode, next: item.nextElementSibling };
+      document.body.appendChild(item);
       document.body.style.overflow = 'hidden'; // 锁住背景滚动
       item.classList.add('web-fs');
     } else {
       item.classList.remove('web-fs');
       document.body.style.overflow = '';
+      if (fsReturn) {
+        try { fsReturn.parent.insertBefore(item, fsReturn.next); }
+        catch (e) { fsReturn.parent.appendChild(item); }
+        fsReturn = null;
+      }
     }
     relabelFsButtons();
   };
