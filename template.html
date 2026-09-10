@@ -1556,7 +1556,7 @@ var safeLS = (function() {
     sections.forEach(function(sec, i) {
       var img = sec.querySelector('.section-header img');
       if (!img) return;
-      var kind = SECTION_KIND[i] || 'cover';
+      var kind = sec.getAttribute('data-kind') || SECTION_KIND[i] || 'cover';
       fastestImage(img, kind, function() {});
     });
   }
