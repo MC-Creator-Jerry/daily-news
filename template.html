@@ -310,26 +310,46 @@
   }
   .fs-btn:hover { border-color: var(--accent); color: var(--accent); }
   .fs-btn:active { transform: scale(.94); }
-  /* 条目「网页全屏」态：页面内覆盖层撑满视口（浏览器标签页/地址栏仍在），
+  /* 正文内嵌实拍图：作为 .item-body 的兄弟节点（避免被 applyLang 的
+     textContent 覆盖），随正文展开而显示 */
+  .item-figs { display: none; gap: 12px; flex-wrap: wrap; margin: 10px 0 2px 4px; }
+  .item-body.open ~ .item-figs { display: flex; }
+  .item-figure { width: 100%; max-width: 420px; height: auto; border-radius: var(--radius); border: 1px solid var(--border); object-fit: cover; }
+  /* 条目「网页全屏」态：独立覆盖层撑满视口，不搬迁原 DOM（稳定可靠），
      非 OS 级 requestFullscreen，避免移动端/旧浏览器兼容问题 */
-  .item.web-fs {
+  .fs-overlay {
     position: fixed;
     inset: 0;
-    top: 0; right: 0; bottom: 0; left: 0;
     z-index: 9999;
-    margin: 0;
-    border-bottom: none;
+    display: none;
+    flex-direction: column;
     background: var(--card-bg);
-    padding: 36px clamp(16px, 5vw, 72px);
-    overflow: auto;
-    width: 100%;
-    max-width: none;
-    max-height: none;
+    color: var(--text);
     box-sizing: border-box;
-    box-shadow: 0 0 0 100vmax rgba(0,0,0,.55);
   }
-  .item.web-fs .item-title { position: sticky; top: 0; background: var(--card-bg); padding-top: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 16px; z-index: 2; }
-  .item.web-fs .item-body { max-height: none; }
+  .fs-overlay.open { display: flex; }
+  .fs-overlay-bar {
+    position: sticky; top: 0;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding: 12px clamp(16px, 5vw, 72px);
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  .fs-close {
+    height: 38px; padding: 0 18px; border-radius: var(--radius);
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    cursor: pointer; font-size: .9em; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .fs-close:hover { border-color: var(--accent); color: var(--accent); }
+  .fs-overlay-scroll { flex: 1; overflow: auto; padding: 28px clamp(16px, 5vw, 72px) 64px; }
+  .fs-item-title { font-size: 1.5em; font-weight: 800; margin-bottom: 18px; line-height: 1.45; }
+  .fs-item-body { font-size: 1.05em; line-height: 1.95; color: var(--text-secondary); white-space: pre-line; }
+  .fs-item-figs { display: flex; gap: 14px; flex-wrap: wrap; margin: 18px 0; }
+  .fs-item-figs img.item-figure { width: 100%; max-width: 520px; object-fit: cover; }
+  .fs-item-source { margin-top: 22px; padding-top: 14px; border-top: 1px dashed var(--border); font-size: .9em; color: var(--text-secondary); white-space: pre-line; }
   .hl-ch { background: var(--hl-color); color: var(--text); border-radius: 2px; padding: 0 1px; }
   .closing {
     text-align: center;
@@ -2099,46 +2119,52 @@ var safeLS = (function() {
     var btn = item.querySelector('.zoom-btn');
     if (btn) btn.innerHTML = zoomBtnHtml(body.classList.contains('zoomed'));
   };
-  var fsReturn = null; // 进入网页全屏前记录 .item 的父节点与相邻兄弟，退出时归位
+  // ========== 网页全屏（独立覆盖层，不搬迁原 DOM，稳定可靠）==========
+  function getFsOverlay() { return document.getElementById('fsOverlay'); }
+  function closeFs() {
+    var ov = getFsOverlay();
+    if (!ov) return;
+    ov.classList.remove('open');
+    ov.setAttribute('aria-hidden', 'true');
+    var c = document.getElementById('fsContent');
+    if (c) c.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  window.closeFs = closeFs;
   window.toggleFsItem = function(idOrEl) {
     var item = (typeof idOrEl === 'string') ? document.getElementById(idOrEl) : idOrEl;
     if (!item) return;
-    if (!item.classList.contains('web-fs')) {
-      // 进入网页全屏前确保正文已展开，否则覆盖层里看不到内容
-      var body = item.querySelector('.item-body');
-      if (body && !body.classList.contains('open')) {
-        body.classList.add('open');
-        var fb = item.querySelector('.item-title .fold-btn');
-        if (fb) fb.innerHTML = foldBtnHtml(true);
-      }
-      // 关键修复：把条目摘到 document.body 末端再用 fixed 全屏。
-      // 否则祖先 .section-card 的 transform(进场动画) / overflow:hidden 会成为
-      // fixed 的包含块，把全屏层裁成一条小碎片（“无法正常显示”）。
-      fsReturn = { parent: item.parentNode, next: item.nextElementSibling };
-      document.body.appendChild(item);
-      document.body.style.overflow = 'hidden'; // 锁住背景滚动
-      item.classList.add('web-fs');
-    } else {
-      item.classList.remove('web-fs');
-      document.body.style.overflow = '';
-      if (fsReturn) {
-        try { fsReturn.parent.insertBefore(item, fsReturn.next); }
-        catch (e) { fsReturn.parent.appendChild(item); }
-        fsReturn = null;
-      }
+    var ov = getFsOverlay();
+    if (!ov) return;
+    if (ov.classList.contains('open')) { closeFs(); return; }
+    // 抓取当前语言下的标题/正文/内嵌图/出处快照（覆盖层是只读展示）
+    var strong = item.querySelector('.item-title strong');
+    var body = item.querySelector('.item-body');
+    var figs = item.querySelector('.item-figs');
+    var src = item.querySelector('.item-source');
+    // 进入前确保正文已展开，否则覆盖层里看不到内容
+    if (body && !body.classList.contains('open')) {
+      body.classList.add('open');
+      var fb = item.querySelector('.item-title .fold-btn');
+      if (fb) fb.innerHTML = foldBtnHtml(true);
     }
-    relabelFsButtons();
+    var html = '';
+    if (strong) html += '<div class="fs-item-title">' + strong.innerHTML + '</div>';
+    if (body) html += '<div class="fs-item-body">' + body.innerHTML + '</div>';
+    if (figs) html += '<div class="fs-item-figs">' + figs.innerHTML + '</div>';
+    if (src) html += '<div class="fs-item-source">' + src.innerHTML + '</div>';
+    var c = document.getElementById('fsContent');
+    if (c) c.innerHTML = html;
+    ov.classList.add('open');
+    ov.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    var sc = ov.querySelector('.fs-overlay-scroll');
+    if (sc) sc.scrollTop = 0;
   };
-  function relabelFsButtons() {
-    document.querySelectorAll('.item').forEach(function(item) {
-      var b = item.querySelector('.item-title .fs-btn');
-      if (b) b.innerHTML = fsBtnHtml(item.classList.contains('web-fs'));
-    });
-  }
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      var open = document.querySelector('.item.web-fs');
-      if (open) toggleFsItem(open);
+      var ov = getFsOverlay();
+      if (ov && ov.classList.contains('open')) closeFs();
     }
   });
   window.expandSectionItems = function(idOrEl) {
@@ -2995,5 +3021,13 @@ var safeLS = (function() {
   });
 })();
 </script>
+<div class="fs-overlay" id="fsOverlay" aria-hidden="true">
+  <div class="fs-overlay-bar">
+    <button class="fs-close" id="fsCloseBtn" type="button" onclick="closeFs()">&#10005; <span data-zh="关闭全屏" data-en="Close fullscreen">关闭全屏</span></button>
+  </div>
+  <div class="fs-overlay-scroll">
+    <div class="fs-item" id="fsContent"></div>
+  </div>
+</div>
 </body>
 </html>
