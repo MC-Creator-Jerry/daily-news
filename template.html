@@ -1211,13 +1211,19 @@ var safeLS = (function() {
   'use strict';
 
   // ========== Date Seed Rotation ==========
-  var seed = new Date().getFullYear()*10000 + (new Date().getMonth()+1)*100 + new Date().getDate();
   var dayNames = ['周日','周一','周二','周三','周四','周五','周六'];
   var dayNamesEn = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  // 归档页日期：优先用页头已烘焙的真实日期（生成时写入），避免打开历史页显示“今天”
+  var titleEl = document.getElementById('pageTitle');
+  var titleText = titleEl ? (titleEl.textContent || '') : '';
+  var dateMatch = /(\d{4}-\d{2}-\d{2})/.exec(titleText);
+  var bakedDate = dateMatch ? dateMatch[1] : null;
   var today = new Date();
-  var dateStr = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
-  var weekDay = dayNames[today.getDay()];
-  var weekDayEn = dayNamesEn[today.getDay()];
+  var dateStr = bakedDate || (today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0'));
+  var wkIdx = new Date(dateStr + 'T00:00:00').getDay();
+  var weekDay = dayNames[wkIdx];
+  var weekDayEn = dayNamesEn[wkIdx];
+  var seed = bakedDate ? parseInt(bakedDate.replace(/-/g, ''), 10) : (today.getFullYear()*10000 + (today.getMonth()+1)*100 + today.getDate());
 
   var welcomes = [
     {zh:'愿今日资讯为您带来收获', en:'May today\'s news bring you value'},
@@ -2120,6 +2126,7 @@ var safeLS = (function() {
     if (btn) btn.innerHTML = zoomBtnHtml(body.classList.contains('zoomed'));
   };
   // ========== 网页全屏（独立覆盖层，不搬迁原 DOM，稳定可靠）==========
+  var fsCurrentItem = null; // 当前处于网页全屏态的条目，用于切换按钮文案
   function getFsOverlay() { return document.getElementById('fsOverlay'); }
   function closeFs() {
     var ov = getFsOverlay();
@@ -2129,6 +2136,8 @@ var safeLS = (function() {
     var c = document.getElementById('fsContent');
     if (c) c.innerHTML = '';
     document.body.style.overflow = '';
+    // 清除触发项的“网页全屏中”状态，让按钮文案回到“放大该内容至网页全屏”
+    if (fsCurrentItem) { fsCurrentItem.classList.remove('web-fs'); fsCurrentItem = null; relabelAllButtons(); }
   }
   window.closeFs = closeFs;
   window.toggleFsItem = function(idOrEl) {
@@ -2158,6 +2167,9 @@ var safeLS = (function() {
     ov.classList.add('open');
     ov.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    item.classList.add('web-fs');
+    fsCurrentItem = item;
+    relabelAllButtons();
     var sc = ov.querySelector('.fs-overlay-scroll');
     if (sc) sc.scrollTop = 0;
   };
