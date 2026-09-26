@@ -936,6 +936,7 @@ img.xl-fade.loaded { opacity: 1; }
   .xl-reveal, .section-card, .prod-card, .feature-card { opacity: 1 !important; }
 }
 </style>
+  <script>document.addEventListener("error",function(e){var t=e.target;if(t&&t.tagName==="IMG"){t.style.display="none";}},true);</script>
 </head>
 <body>
 
@@ -965,7 +966,7 @@ img.xl-fade.loaded { opacity: 1; }
   <span id="browserTipText">建议使用 Safari / Chrome / Edge 等默认浏览器打开，否则可能遇到语音朗读等功能异常。</span>
 </div>
 
-<img class="banner" id="bannerImg" src="img/banner.jpg" alt="banner" fetchpriority="high" decoding="async">
+<img class="banner" id="bannerImg" src="img/banner.jpg" alt="banner" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.style.display='none'">
 
 <div class="container">
   <div class="global-actions">
