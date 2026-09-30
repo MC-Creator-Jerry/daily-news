@@ -1,0 +1,13 @@
+{
+  "_comment": "Cloud/FREE LLM config for generate-news.py. The API token is read from env CF_API_TOKEN first (set as a GitHub Actions repo secret), then this file's api_key. Cloudflare Workers AI is FREE on the account's free tier. Model @cf/meta/llama-4-scout-17b-16e-instruct is current & available on this account (verified 200). Mistral-small-3.1-24b is a good fallback if scout is rate-limited.",
+  "api_base": "https://api.cloudflare.com/client/v4/accounts/656786503a9716755886f1dc756cdb78/ai/v1",
+  "api_key": "",
+  "model": "@cf/meta/llama-4-scout-17b-16e-instruct",
+  "timeout": 120,
+  "min_items": 3,
+  "max_items": 4,
+  "body_min_chars": 700,
+  "body_max_chars": 900,
+  "max_tokens": 6000,
+  "section_retries": 2
+}
