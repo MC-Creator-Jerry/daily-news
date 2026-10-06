@@ -167,7 +167,7 @@
     object-fit: cover;
     display: block;
     background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 40%, #000) 100%);
-    opacity: 0;
+    opacity: 1;
     transition: opacity .5s ease;
   }
   .banner.img-loaded { opacity: 1; }
@@ -3303,7 +3303,13 @@ var safeLS = (function() {
       return pool[h % pool.length];
     }
     var banner = document.getElementById('bannerImg');
-    if (banner) { banner.src = dailyHeroImage(); }
+    if (banner) {
+      banner.classList.add('img-loaded');
+      banner.addEventListener('load', function () { banner.classList.add('img-loaded'); });
+      banner.addEventListener('error', function () { banner.style.display = 'none'; });
+      banner.src = dailyHeroImage();
+      if (banner.complete && banner.naturalWidth > 0) banner.classList.add('img-loaded');
+    }
     sections.forEach(function(sec, i) {
       var img = sec.querySelector('.section-header img');
       if (!img) return;
