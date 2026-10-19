@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>每日全球要闻｜2026-08-26</title>
+<link rel="stylesheet" href="ic.css?v=20261019a" />
 <style>
   :root {
     --bg: #f3f4f6;
@@ -884,12 +885,12 @@ img.xl-fade.loaded { opacity: 1; }
         <span id="aiGenText">内容由 AI 生成</span>
       </div>
       <div class="tts-btn-row">
-        <button class="tts-main-btn" id="ttsMainBtn" onclick="playAll()">🔊 <span id="ttsMainLabel">全文语音收听</span></button>
+        <button class="tts-main-btn" id="ttsMainBtn" onclick="playAll()"><i class="ic" data-ic="volume" aria-hidden="true"></i> <span id="ttsMainLabel">全文语音收听</span></button>
       </div>
     </div>
     <div class="title-btns">
-      <button class="title-btn" id="homeBtn" onclick="goHome()" title="返回新闻主页"><span class="tb-icon">🏠</span><span id="homeLabel">新闻主页</span></button>
-      <button class="title-btn" id="shareBtn" onclick="sharePage()" title="分享"><span class="tb-icon">⬆️</span><span id="shareLabel">分享</span></button>
+      <button class="title-btn" id="homeBtn" onclick="goHome()" title="返回新闻主页"><span class="tb-icon"><i class="ic" data-ic="home" aria-hidden="true"></i></span><span id="homeLabel">新闻主页</span></button>
+      <button class="title-btn" id="shareBtn" onclick="sharePage()" title="分享"><span class="tb-icon"><i class="ic" data-ic="arrow-up" aria-hidden="true"></i></span><span id="shareLabel">分享</span></button>
       <button class="title-btn" id="settingsBtn" onclick="openSettings()" title="设置"><span class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1H21a2 2 0 0 1 0-4h-.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span id="settingsLabel">设置</span></button>
     </div>
   </div>
@@ -915,11 +916,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec0')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="军事" data-en="Military"><span class="section-icon">🎖️</span>军事</span>
+        <span class="section-title" data-zh="军事" data-en="Military"><span class="section-icon"><i class="ic" data-ic="medal" aria-hidden="true"></i></span>军事</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec0')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec0')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec0')" id="fold-sec0">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec0')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec0')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -965,11 +966,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec1')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="财经" data-en="Finance &amp; Markets"><span class="section-icon">💵</span>财经</span>
+        <span class="section-title" data-zh="财经" data-en="Finance &amp; Markets"><span class="section-icon"><i class="ic" data-ic="cash" aria-hidden="true"></i></span>财经</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec1')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec1')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec1')" id="fold-sec1">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec1')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec1')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1015,11 +1016,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec2')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="AI与科技" data-en="AI &amp; Technology"><span class="section-icon">🤖</span>AI与科技</span>
+        <span class="section-title" data-zh="AI与科技" data-en="AI &amp; Technology"><span class="section-icon"><i class="ic" data-ic="bot2" aria-hidden="true"></i></span>AI与科技</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec2')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec2')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec2')" id="fold-sec2">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec2')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec2')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1065,11 +1066,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec3')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="国际政治" data-en="International Politics"><span class="section-icon">🌍</span>国际政治</span>
+        <span class="section-title" data-zh="国际政治" data-en="International Politics"><span class="section-icon"><i class="ic" data-ic="globe" aria-hidden="true"></i></span>国际政治</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec3')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec3')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec3')" id="fold-sec3">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec3')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec3')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1115,11 +1116,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec4')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="产业商业" data-en="Industry &amp; Business"><span class="section-icon">🏭</span>产业商业</span>
+        <span class="section-title" data-zh="产业商业" data-en="Industry &amp; Business"><span class="section-icon"><i class="ic" data-ic="factory" aria-hidden="true"></i></span>产业商业</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec4')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec4')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec4')" id="fold-sec4">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec4')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec4')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1165,11 +1166,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec5')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="能源与气候" data-en="Energy &amp; Climate"><span class="section-icon">⚡</span>能源与气候</span>
+        <span class="section-title" data-zh="能源与气候" data-en="Energy &amp; Climate"><span class="section-icon"><i class="ic" data-ic="bolt" aria-hidden="true"></i></span>能源与气候</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec5')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec5')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec5')" id="fold-sec5">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec5')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec5')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1215,11 +1216,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec6')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="医疗健康" data-en="Health &amp; Medicine"><span class="section-icon">🏥</span>医疗健康</span>
+        <span class="section-title" data-zh="医疗健康" data-en="Health &amp; Medicine"><span class="section-icon"><i class="ic" data-ic="health" aria-hidden="true"></i></span>医疗健康</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec6')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec6')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec6')" id="fold-sec6">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec6')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec6')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1265,11 +1266,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec7')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="半导体与硬件" data-en="Semiconductors &amp; Hardware"><span class="section-icon">💻</span>半导体与硬件</span>
+        <span class="section-title" data-zh="半导体与硬件" data-en="Semiconductors &amp; Hardware"><span class="section-icon"><i class="ic" data-ic="desktop" aria-hidden="true"></i></span>半导体与硬件</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec7')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec7')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec7')" id="fold-sec7">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec7')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec7')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1315,11 +1316,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec8')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="航天与空间" data-en="Space &amp; Aerospace"><span class="section-icon">🚀</span>航天与空间</span>
+        <span class="section-title" data-zh="航天与空间" data-en="Space &amp; Aerospace"><span class="section-icon"><i class="ic" data-ic="rocket" aria-hidden="true"></i></span>航天与空间</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec8')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec8')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec8')" id="fold-sec8">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec8')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec8')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1365,11 +1366,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec9')">
       <img src="" alt="" loading="lazy" decoding="async">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="社会与舆情" data-en="Society &amp; Public Opinion"><span class="section-icon">📱</span>社会与舆情</span>
+        <span class="section-title" data-zh="社会与舆情" data-en="Society &amp; Public Opinion"><span class="section-icon"><i class="ic" data-ic="phone" aria-hidden="true"></i></span>社会与舆情</span>
         <span class="section-actions">
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec9')" title="展开本节">📖</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec9')" title="展开本节"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec9')" id="fold-sec9">▼</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec9')" title="朗读本节">🔊</button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec9')" title="朗读本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1426,7 +1427,7 @@ img.xl-fade.loaded { opacity: 1; }
   <div class="settings-panel">
     <div class="settings-header">
       <h2 id="settingsTitle">设置</h2>
-      <button class="icon-btn" onclick="closeSettings()">✕</button>
+      <button class="icon-btn" onclick="closeSettings()"><i class="ic" data-ic="x" aria-hidden="true"></i></button>
     </div>
 
     <div class="settings-scroll">
@@ -1576,7 +1577,7 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="player-extra-group">
       <select id="voiceSel" onchange="changeVoice(this.value)">
         <option value="">默认语音</option>
-        <option value="__custom__">➕ 自定义声音…</option>
+        <option value="__custom__"> 自定义声音…</option>
       </select>
       <select id="speedSel" onchange="setSpeed(this.value)">
         <option value="0.5">0.5x</option>
@@ -1608,7 +1609,7 @@ img.xl-fade.loaded { opacity: 1; }
     </button>
   </div>
   <div class="player-chapter" id="playerChapter" style="width:100%;font-size:12px;color:var(--text-secondary);text-align:center;margin-top:2px;min-height:16px;"></div>
-  <div class="player-hint" id="playerHint" style="width:100%;font-size:11px;color:var(--text-secondary);opacity:.7;text-align:center;margin-top:4px;">💡 建议使用默认浏览器打开，语音朗读更稳定</div>
+  <div class="player-hint" id="playerHint" style="width:100%;font-size:11px;color:var(--text-secondary);opacity:.7;text-align:center;margin-top:4px;"><i class="ic" data-ic="bulb" aria-hidden="true"></i> 建议使用默认浏览器打开，语音朗读更稳定</div>
 </div>
 <!-- Custom voice modal -->
 <div class="modal-overlay" id="voiceModal" onclick="if(event.target===this)closeVoiceModal()">
