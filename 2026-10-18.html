@@ -14,6 +14,7 @@
 <link rel="icon" href="https://mc-creator-jerry-webpage.pages.dev/favicon.svg?v=20260926" type="image/svg+xml" />
 <meta name="theme-color" content="#1f2937" />
 <title>每日全球要闻｜2026-10-18</title>
+<link rel="stylesheet" href="ic.css?v=20261019a" />
 <style>
   :root {
     --bg: #f3f4f6;
@@ -989,12 +990,12 @@ img.xl-fade.loaded { opacity: 1; }
         <span id="aiGenText">内容由 AI 生成</span>
       </div>
       <div class="tts-btn-row">
-        <button class="tts-main-btn" id="ttsMainBtn" onclick="playAll()">🔊 <span id="ttsMainLabel">全文语音收听</span></button>
+        <button class="tts-main-btn" id="ttsMainBtn" onclick="playAll()"><i class="ic" data-ic="volume" aria-hidden="true"></i> <span id="ttsMainLabel">全文语音收听</span></button>
       </div>
     </div>
     <div class="title-btns">
-      <button class="title-btn" id="homeBtn" onclick="goHome()" title="返回新闻主页"><span class="tb-icon">🏠</span><span id="homeLabel">新闻主页</span></button>
-      <button class="title-btn" id="shareBtn" onclick="sharePage()" title="分享"><span class="tb-icon">⬆️</span><span id="shareLabel">分享</span></button>
+      <button class="title-btn" id="homeBtn" onclick="goHome()" title="返回新闻主页"><span class="tb-icon"><i class="ic" data-ic="home" aria-hidden="true"></i></span><span id="homeLabel">新闻主页</span></button>
+      <button class="title-btn" id="shareBtn" onclick="sharePage()" title="分享"><span class="tb-icon"><i class="ic" data-ic="arrow-up" aria-hidden="true"></i></span><span id="shareLabel">分享</span></button>
       <button class="title-btn" id="settingsBtn" onclick="openSettings()" title="设置"><span class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1H21a2 2 0 0 1 0-4h-.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span id="settingsLabel">设置</span></button>
     </div>
   </div>
@@ -1020,11 +1021,11 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="section-header" onclick="toggleSection('sec0')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="上热搜" data-en="Trending"><span class="section-icon">🔥</span>上热搜</span>
+        <span class="section-title" data-zh="上热搜" data-en="Trending"><span class="section-icon"><i class="ic" data-ic="flame" aria-hidden="true"></i></span>上热搜</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec0')" id="fold-sec0">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec0')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec0')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec0')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec0')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1035,7 +1036,7 @@ img.xl-fade.loaded { opacity: 1; }
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec0-0" onclick="event.stopPropagation();toggleItem('item-sec0-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec0-0" onclick="event.stopPropagation();toggleZoomItem('item-sec0-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec0-0" onclick="event.stopPropagation();toggleFsItem('item-sec0-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec0-0" onclick="event.stopPropagation();toggleFsItem('item-sec0-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：近日，多部网络短剧与影视片段中由人工智能生成的“吻戏”画面在社交平台刷屏，相关话题“AI的吻戏比真人还欲”冲上微博热搜，引发网友关于技术与表演边界的热议。不少观众发现，部分画面中的亲密镜头并非由演员实拍，而是借助生成式模型合成，其细腻程度甚至让部分网友直呼“以假乱真”。相关剪辑在短视频平台获得千万级播放，不少影视博主逐帧拆解其光影与唇部细节，感叹生成质量已逼近专业团队水准。
@@ -1068,7 +1069,7 @@ Outlook: As the topic keeps spreading, regulators and platforms are expected to 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec0-1" onclick="event.stopPropagation();toggleItem('item-sec0-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec0-1" onclick="event.stopPropagation();toggleZoomItem('item-sec0-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec0-1" onclick="event.stopPropagation();toggleFsItem('item-sec0-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec0-1" onclick="event.stopPropagation();toggleFsItem('item-sec0-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：一名中国年轻女孩在社交平台分享自己长期居住并改装低速电动车“老头乐”的日常生活，相关视频在海外平台被大量转发，“中国小姐姐蜗居老头乐在外网走红”登上国内热搜。视频中，她将不足两平方米的车内空间布置得井井有条，引发海外网友对中国年轻人“极简生活”与低成本居住方式的强烈好奇。评论区里，外国网友争相询问购车渠道与改装清单，也有人调侃这是“把家搬上了四个轮子”，相关二创字幕与盘点视频随之涌现。
@@ -1101,7 +1102,7 @@ Outlook: The buzz may launch a wave of public discussion about micro-living and 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec0-2" onclick="event.stopPropagation();toggleItem('item-sec0-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec0-2" onclick="event.stopPropagation();toggleZoomItem('item-sec0-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec0-2" onclick="event.stopPropagation();toggleFsItem('item-sec0-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec0-2" onclick="event.stopPropagation();toggleFsItem('item-sec0-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：近日，多名网友在社交平台发帖称，试用多邻国（Duolingo）会员到期后，在未充分提醒的情况下被自动扣费，单笔金额高达七百三十八元，话题“多人投诉多邻国APP”迅速登上热搜，引发关于App自动续费套路与平台责任的广泛讨论。不少用户表示，自己早已忘记曾开通试用，却被悄然划走一整年的费用。有用户晒出扣费截图与时间线，称试用期仅七天，扣费却发生在深夜，醒来才发现银行卡已被划走，类似的“睡后扣款”遭遇引发大量共鸣。
@@ -1134,11 +1135,11 @@ Outlook: As complaints rise, app stores and regulators are expected to tighten c
     <div class="section-header" onclick="toggleSection('sec1')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="军事" data-en="Military"><span class="section-icon">🎖️</span>军事</span>
+        <span class="section-title" data-zh="军事" data-en="Military"><span class="section-icon"><i class="ic" data-ic="medal" aria-hidden="true"></i></span>军事</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec1')" id="fold-sec1">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec1')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec1')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec1')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec1')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1149,7 +1150,7 @@ Outlook: As complaints rise, app stores and regulators are expected to tighten c
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec1-0" onclick="event.stopPropagation();toggleItem('item-sec1-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec1-0" onclick="event.stopPropagation();toggleZoomItem('item-sec1-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec1-0" onclick="event.stopPropagation();toggleFsItem('item-sec1-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec1-0" onclick="event.stopPropagation();toggleFsItem('item-sec1-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：近日，中巴&quot;喀喇昆仑-2026&quot;陆军联合训练在新疆库尔勒某训练基地正式开训。这是两国首次举行陆军级别的成建制联合训练，此前双方虽有&quot;雄鹰&quot;系列空军联训与海军联演，但陆军部队的联合训练尚属首次。最引人注目的是，巴方官兵此行未携带任何个人武器，从步枪、班用机枪到装甲突击车、步兵战车，乃至无人机与反无人作战系统，全部由中方提供。开训现场，中方官兵将191式步枪、201式班用机枪等装备直接交接给巴方，双方随即转入课目训练。
@@ -1182,7 +1183,7 @@ Outlook: As the training moves into live-force drills, the two sides are expecte
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec1-1" onclick="event.stopPropagation();toggleItem('item-sec1-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec1-1" onclick="event.stopPropagation();toggleZoomItem('item-sec1-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec1-1" onclick="event.stopPropagation();toggleFsItem('item-sec1-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec1-1" onclick="event.stopPropagation();toggleFsItem('item-sec1-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：美国国务卿鲁比奥近日访问希腊，与希腊外长耶拉彼得里蒂斯共同主持第六轮美希战略对话。双方宣布一项价值约40亿美元的美国对希腊军售安排，用于支持希腊长期国防计划、提升两国军队协同与联合作战能力，并探索防务工业与新技术合作。双方还计划扩大执法与反恐合作，建立新的反恐信息共享机制，并进一步强化军事人员与装备层面的往来。此次访问凸显在东地中海安全环境持续变化的背景下，美国正进一步收紧与希腊的军事联系。
@@ -1215,7 +1216,7 @@ Outlook: As the sale proceeds, modernization of Greece's F-16 fleet and its F-35
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec1-2" onclick="event.stopPropagation();toggleItem('item-sec1-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec1-2" onclick="event.stopPropagation();toggleZoomItem('item-sec1-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec1-2" onclick="event.stopPropagation();toggleFsItem('item-sec1-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec1-2" onclick="event.stopPropagation();toggleFsItem('item-sec1-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：英国国防部近日发布消息称，科威特与英国防务企业签署价值3.7亿英镑的军购合同，采购一套搭载人工智能技术的防空系统。该合同依托英国相关特别工作组机制推进，统筹政府与军工产业资源，助力海湾地区盟友获取先进防务装备。装备的生产制造主要在英国布里斯托尔开展，预计将显著增强科威特对空中威胁的探测、预警与拦截能力。英方表示，此举有助于强化科威特本土及关键基础设施的防护水平。
@@ -1248,11 +1249,11 @@ Outlook: As the system enters delivery and deployment, Kuwait's air-defense netw
     <div class="section-header" onclick="toggleSection('sec2')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="财经" data-en="Finance &amp; Markets"><span class="section-icon">💵</span>财经</span>
+        <span class="section-title" data-zh="财经" data-en="Finance &amp; Markets"><span class="section-icon"><i class="ic" data-ic="cash" aria-hidden="true"></i></span>财经</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec2')" id="fold-sec2">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec2')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec2')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec2')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec2')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1263,7 +1264,7 @@ Outlook: As the system enters delivery and deployment, Kuwait's air-defense netw
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec2-0" onclick="event.stopPropagation();toggleItem('item-sec2-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec2-0" onclick="event.stopPropagation();toggleZoomItem('item-sec2-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec2-0" onclick="event.stopPropagation();toggleFsItem('item-sec2-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec2-0" onclick="event.stopPropagation();toggleFsItem('item-sec2-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="10月14日（周三），苹果公司股价收盘市值首次突破5万亿美元大关，成为继芯片制造商英伟达之后，全球历史上第二家收盘站上这一里程碑的上市公司。据《华尔街日报》报道，此前苹果市值虽曾在盘中六度越过5万亿美元，但这是其首次在收盘时稳稳站上该水平。这一突破标志着全球科技巨头市值竞赛进入新的阶段，也凸显出市场对人工智能驱动增长叙事的持续追捧。
@@ -1296,7 +1297,7 @@ Looking ahead, markets will watch Apple's upcoming earnings closely to test whet
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec2-1" onclick="event.stopPropagation();toggleItem('item-sec2-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec2-1" onclick="event.stopPropagation();toggleZoomItem('item-sec2-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec2-1" onclick="event.stopPropagation();toggleFsItem('item-sec2-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec2-1" onclick="event.stopPropagation();toggleFsItem('item-sec2-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="10月15日，国际货币基金组织（IMF）公开敦促中国采取更大规模的财政刺激措施，并直言该国的房地产危机&quot;已经拖得太久&quot;。据路透社报道，IMF官员在最新评估中重申其一贯主张，呼吁北京出台政策以重整陷入长期低迷的房地产行业。与此同时，彭博社经由雅虎财经发布的报道指出，IMF还警告称中国的刺激方案缺乏雄心，并认为人民币存在低估。相关表态在全球市场引发广泛关注。
@@ -1329,7 +1330,7 @@ IMF的呼吁直指两大投资者最关心的变量：一是财政刺激的规�
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec2-2" onclick="event.stopPropagation();toggleItem('item-sec2-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec2-2" onclick="event.stopPropagation();toggleZoomItem('item-sec2-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec2-2" onclick="event.stopPropagation();toggleFsItem('item-sec2-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec2-2" onclick="event.stopPropagation();toggleFsItem('item-sec2-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="流媒体巨头网飞（Netflix）近日宣布裁减约6%的员工，相当于约1000个岗位，这是该公司自2022年以来规模最大的一轮裁员。据路透社报道，此次裁员正值这家流媒体先驱面临来自竞争对手日益激烈的竞争压力之际，多数被裁岗位集中在产品、技术、法务及人力资源等团队。消息公布后，市场对网飞的运营效率与增长前景展开新一轮讨论。
@@ -1362,11 +1363,11 @@ Looking forward, Netflix's earnings will hinge on several factors: the conversio
     <div class="section-header" onclick="toggleSection('sec3')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="AI" data-en="Artificial Intelligence"><span class="section-icon">🤖</span>AI</span>
+        <span class="section-title" data-zh="AI" data-en="Artificial Intelligence"><span class="section-icon"><i class="ic" data-ic="bot2" aria-hidden="true"></i></span>AI</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec3')" id="fold-sec3">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec3')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec3')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec3')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec3')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1377,7 +1378,7 @@ Looking forward, Netflix's earnings will hinge on several factors: the conversio
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec3-0" onclick="event.stopPropagation();toggleItem('item-sec3-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec3-0" onclick="event.stopPropagation();toggleZoomItem('item-sec3-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec3-0" onclick="event.stopPropagation();toggleFsItem('item-sec3-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec3-0" onclick="event.stopPropagation();toggleFsItem('item-sec3-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：法国人工智能公司Mistral AI于2026年10月6日发布旗舰大模型Mistral Large 4的公开预览版，社区昵称&quot;Le Chonk&quot;（肥猫）。该模型总参数达1.05万亿，每次推理仅激活约490亿参数，采用原生多模态混合专家（MoE）架构，并计划在10月底开放权重，被视为欧洲对标美国与中国前沿模型的开源重器。
@@ -1410,7 +1411,7 @@ Outlook: With open weights expected around October 27, developers worldwide will
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec3-1" onclick="event.stopPropagation();toggleItem('item-sec3-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec3-1" onclick="event.stopPropagation();toggleZoomItem('item-sec3-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec3-1" onclick="event.stopPropagation();toggleFsItem('item-sec3-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec3-1" onclick="event.stopPropagation();toggleFsItem('item-sec3-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：谷歌于2026年10月1日搭乘SpaceX的Transporter-18拼车任务，将首颗搭载四块自研TPU芯片的实验卫星送入近地轨道，正式启动&quot;太阳捕手计划&quot;（Project Suncatcher）。这是谷歌定制人工智能芯片首次在太空中运行，目标是验证机器学习基础设施未来能否在轨部署，为潜在的太空数据中心探路。
@@ -1443,7 +1444,7 @@ Outlook: Whether orbital data centers become commercially viable still depends o
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec3-2" onclick="event.stopPropagation();toggleItem('item-sec3-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec3-2" onclick="event.stopPropagation();toggleZoomItem('item-sec3-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec3-2" onclick="event.stopPropagation();toggleFsItem('item-sec3-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec3-2" onclick="event.stopPropagation();toggleFsItem('item-sec3-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：英国信息专员办公室（ICO）于2026年10月8日宣布，十家主要AI基础模型开发商已落实或承诺落实数据保护改进，并同步启动一项为期约六周、于11月20日截止的&quot;智能体AI&quot;证据征集，标志着监管视野从基础模型训练正式延伸至可自主行动的AI智能体。
@@ -1476,11 +1477,11 @@ Outlook: The evidence gathered will feed future agentic-AI guidance and support 
     <div class="section-header" onclick="toggleSection('sec4')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="科技" data-en="Technology"><span class="section-icon">💻</span>科技</span>
+        <span class="section-title" data-zh="科技" data-en="Technology"><span class="section-icon"><i class="ic" data-ic="desktop" aria-hidden="true"></i></span>科技</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec4')" id="fold-sec4">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec4')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec4')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec4')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec4')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1491,7 +1492,7 @@ Outlook: The evidence gathered will feed future agentic-AI guidance and support 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec4-0" onclick="event.stopPropagation();toggleItem('item-sec4-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec4-0" onclick="event.stopPropagation();toggleZoomItem('item-sec4-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec4-0" onclick="event.stopPropagation();toggleFsItem('item-sec4-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec4-0" onclick="event.stopPropagation();toggleFsItem('item-sec4-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="第十届未来网络发展大会于10月16日在南京开幕。中国工程院院士刘韵洁、中国科学院院士尤肖虎在开幕式上集中发布了三项重大科研成果：基于确定性网络的智能体互联平台AXP、卫星互联网组网控制系统及在轨应用、太赫兹通信光电转换器件优化设计方法与实践。大会以“智能未来网·十年CENI路”为主题，参会规模超过三千人，同期还发布了未来网络十大创新场景，推动前沿网络技术从概念走向真实落地的解决方案。
@@ -1524,7 +1525,7 @@ During the conference, Purple Mountain Laboratories signed a strategic cooperati
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec4-1" onclick="event.stopPropagation();toggleItem('item-sec4-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec4-1" onclick="event.stopPropagation();toggleZoomItem('item-sec4-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec4-1" onclick="event.stopPropagation();toggleFsItem('item-sec4-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec4-1" onclick="event.stopPropagation();toggleFsItem('item-sec4-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="浙江大学许震、高超团队联合清华大学徐志平团队，在石墨烯膜中发现“层间折叠卡扣”新结构与新机制，首次让石墨烯膜同时具备高强度、高韧性与高弹性。相关成果于10月14日晚发表在国际期刊《自然》。测试显示，该石墨烯膜拉伸强度达2.9吉帕，韧性达84.5兆焦每立方米，在百分之四高应变下循环一百次后仍能承受1.9吉帕高应力，多项指标打破传统层状材料纪录。
@@ -1557,7 +1558,7 @@ Such graphene membranes with combined strength, toughness and elasticity hold pr
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec4-2" onclick="event.stopPropagation();toggleItem('item-sec4-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec4-2" onclick="event.stopPropagation();toggleZoomItem('item-sec4-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec4-2" onclick="event.stopPropagation();toggleFsItem('item-sec4-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec4-2" onclick="event.stopPropagation();toggleFsItem('item-sec4-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="中国科学院团队研发出人造光合水凝胶微球系统，将光催化产氢、微生物固碳与产物转化三个模块整合于一颗毫米级微球中，成功把二氧化碳转化为葡萄糖、肌醇、氨基葡萄糖、蔗糖和淀粉等高值产物。该成果于10月12日在《科技日报》报道，系统十天内累计产出乙酸212.4毫克每升，氢气到乙酸的摩尔转化效率达88.85%，较简单混合对照组提升了一个数量级。
@@ -1590,11 +1591,11 @@ Researchers said the next step is to explore more efficient hybrid systems suita
     <div class="section-header" onclick="toggleSection('sec5')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="国际政治" data-en="International Politics"><span class="section-icon">🌍</span>国际政治</span>
+        <span class="section-title" data-zh="国际政治" data-en="International Politics"><span class="section-icon"><i class="ic" data-ic="globe" aria-hidden="true"></i></span>国际政治</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec5')" id="fold-sec5">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec5')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec5')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec5')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec5')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1605,7 +1606,7 @@ Researchers said the next step is to explore more efficient hybrid systems suita
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec5-0" onclick="event.stopPropagation();toggleItem('item-sec5-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec5-0" onclick="event.stopPropagation();toggleZoomItem('item-sec5-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec5-0" onclick="event.stopPropagation();toggleFsItem('item-sec5-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec5-0" onclick="event.stopPropagation();toggleFsItem('item-sec5-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="10月15日至16日，欧盟成员国领导人齐聚比利时布鲁塞尔，举行为期两天的欧洲理事会峰会。会议首日，各国领导人就竞争力、下一代多年度财政框架以及扩员与改革三项议题通过结论文件。欧盟委员会主席冯德莱恩与欧洲理事会主席科斯塔共同出席新闻发布会，强调在能源价格高企、安全支出攀升的背景下，欧洲必须加快提升自身竞争力与战略自主能力。峰会虽在部分议程上取得进展，但在长期预算的规模与结构问题上分歧依然明显。
@@ -1638,7 +1639,7 @@ Council President Costa said he aims to clinch a budget deal by year-end and to 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec5-1" onclick="event.stopPropagation();toggleItem('item-sec5-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec5-1" onclick="event.stopPropagation();toggleZoomItem('item-sec5-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec5-1" onclick="event.stopPropagation();toggleFsItem('item-sec5-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec5-1" onclick="event.stopPropagation();toggleFsItem('item-sec5-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="十月十二日至十八日，国际货币基金组织与世界银行集团二〇二六年秋季年会在泰国首都曼谷举行，来自一百八十多个国家和地区的约一点八万名代表与会。这是两大布雷顿森林机构时隔三十五年再度回到曼谷办会。会议期间，国际货币与金融委员会于十七日发表主席声明，警告冲突、贸易紧张与供应链中断正持续威胁全球经济韧性，同时呼吁各国加强国际合作以重建政策缓冲。
@@ -1671,7 +1672,7 @@ The chair's statement called on policymakers to rebuild buffers through credible
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec5-2" onclick="event.stopPropagation();toggleItem('item-sec5-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec5-2" onclick="event.stopPropagation();toggleZoomItem('item-sec5-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec5-2" onclick="event.stopPropagation();toggleFsItem('item-sec5-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec5-2" onclick="event.stopPropagation();toggleFsItem('item-sec5-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="当地时间十月十三日，第七十一届联合国大会选举产生新一届联合国人权理事会十五个成员，以接替将于今年年底结束任期的理事国。新当选的国家包括非洲地区的布隆迪、加纳、尼日利亚、赞比亚，亚太地区的日本、约旦、科威特、尼泊尔，东欧地区的摩尔多瓦、乌克兰，拉美及加勒比地区的巴西、多米尼加共和国、乌拉圭，以及西欧及其他地区的德国、爱尔兰。其中六个国家为连任，十五个席位今年均无竞争对手，各国顺利当选。新成员任期自二〇二七年一月一日起，为期三年。
@@ -1704,11 +1705,11 @@ The fifteen newly elected members will take their seats in January and, over the
     <div class="section-header" onclick="toggleSection('sec6')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="产业商业" data-en="Industry &amp; Business"><span class="section-icon">🏭</span>产业商业</span>
+        <span class="section-title" data-zh="产业商业" data-en="Industry &amp; Business"><span class="section-icon"><i class="ic" data-ic="factory" aria-hidden="true"></i></span>产业商业</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec6')" id="fold-sec6">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec6')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec6')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec6')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec6')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1719,7 +1720,7 @@ The fifteen newly elected members will take their seats in January and, over the
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec6-0" onclick="event.stopPropagation();toggleItem('item-sec6-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec6-0" onclick="event.stopPropagation();toggleZoomItem('item-sec6-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec6-0" onclick="event.stopPropagation();toggleFsItem('item-sec6-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec6-0" onclick="event.stopPropagation();toggleFsItem('item-sec6-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="工信部10月16日公示第412批《道路机动车辆生产企业及产品公告》，安徽智界新能源汽车有限公司被列入“拟发布新准入车辆生产企业”清单，公示期至10月23日。10月17日，智界汽车内部人士向第一财经确认，公示结束获批后将取得独立造车资质，并同步确认公司未来计划独立上市。这也意味着智界将成为华为“鸿蒙智行”模式下首个明确走向独立资本运作的汽车品牌。
@@ -1752,7 +1753,7 @@ Analysts expect Luxeed to formally secure the license by late October if no obje
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec6-1" onclick="event.stopPropagation();toggleItem('item-sec6-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec6-1" onclick="event.stopPropagation();toggleZoomItem('item-sec6-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec6-1" onclick="event.stopPropagation();toggleFsItem('item-sec6-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec6-1" onclick="event.stopPropagation();toggleFsItem('item-sec6-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="10月18日，现代汽车集团中国前瞻数字研发中心正式启用。该中心是继2013年现代汽车·起亚中国研发中心在烟台成立后，集团在华设立的海外首个前瞻数字化智能研发中心，聚焦于软件定义汽车、智能座舱、自动驾驶及车联网等前沿领域的本土化研发。中心落地后将成为连接中韩研发体系的重要枢纽。
@@ -1785,7 +1786,7 @@ Hyundai said the center will link with its global R&amp;D network, working with 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec6-2" onclick="event.stopPropagation();toggleItem('item-sec6-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec6-2" onclick="event.stopPropagation();toggleZoomItem('item-sec6-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec6-2" onclick="event.stopPropagation();toggleFsItem('item-sec6-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec6-2" onclick="event.stopPropagation();toggleFsItem('item-sec6-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="10月16日，招商局置地有限公司公告，其间接全资附属公司广州招商房地产有限公司与九龙仓置业（广州）有限公司及佛山依云房地产有限公司订立股权转让协议。九龙仓广州将其持有的佛山依云50%股权及对应债权转让予广州招商，交易完成后佛山依云将成为招商局置地的间接全资附属公司。经股权对价加债权、减债务计算，广州招商实际支付现金约1.15亿元，交易对价显著低于项目账面资产规模。
@@ -1818,11 +1819,11 @@ Market watchers expect that as the sector's shakeout nears its end, well-funded 
     <div class="section-header" onclick="toggleSection('sec7')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="能源与气候" data-en="Energy &amp; Climate"><span class="section-icon">⚡</span>能源与气候</span>
+        <span class="section-title" data-zh="能源与气候" data-en="Energy &amp; Climate"><span class="section-icon"><i class="ic" data-ic="bolt" aria-hidden="true"></i></span>能源与气候</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec7')" id="fold-sec7">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec7')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec7')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec7')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec7')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1833,7 +1834,7 @@ Market watchers expect that as the sector's shakeout nears its end, well-funded 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec7-0" onclick="event.stopPropagation();toggleItem('item-sec7-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec7-0" onclick="event.stopPropagation();toggleZoomItem('item-sec7-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec7-0" onclick="event.stopPropagation();toggleFsItem('item-sec7-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec7-0" onclick="event.stopPropagation();toggleFsItem('item-sec7-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="2026年中国碳市场大会近期在武汉举行，来自二十七个国家、地区及国际组织的代表围绕绿色低碳合作展开深入交流。大会发布的《全国碳市场发展报告（2026）》显示，全国碳排放权交易市场启动五年来已累计为先进企业创造减排收益超过三百五十六亿元，全社会减排成本降低约五百六十八亿元。生态环境部在会上明确，下一步将在现有四个行业基础上把石化、化工等高排放行业纳入全国碳市场，力争实现对全国约百分之八十二氧化碳排放的有效管控。
@@ -1866,7 +1867,7 @@ Under current plans, by 2027 the national ETS will essentially cover the main em
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec7-1" onclick="event.stopPropagation();toggleItem('item-sec7-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec7-1" onclick="event.stopPropagation();toggleZoomItem('item-sec7-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec7-1" onclick="event.stopPropagation();toggleFsItem('item-sec7-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec7-1" onclick="event.stopPropagation();toggleFsItem('item-sec7-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="在欧洲理事会十月十五至十六日峰会前夕，欧盟委员会主席冯德莱恩于十月六日在欧洲议会全体辩论中警告，能源成本飙升正重新主导政治议程。她指出，自二月底以来天然气价格已上涨百分之一百四十，柴油价格翻番，进口化石能源使欧洲额外支出约一千亿欧元却未增加任何能源供给。她呼吁欧洲议会在年底前通过“电网一揽子方案”，以打通可再生能源并网的堵点。
@@ -1899,7 +1900,7 @@ The Commission's Electrification Action Plan aims to double the share of electri
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec7-2" onclick="event.stopPropagation();toggleItem('item-sec7-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec7-2" onclick="event.stopPropagation();toggleZoomItem('item-sec7-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec7-2" onclick="event.stopPropagation();toggleFsItem('item-sec7-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec7-2" onclick="event.stopPropagation();toggleFsItem('item-sec7-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="十月十日，新疆维吾尔自治区人民政府新闻办公室举行“十五五”系列主题新闻发布会，围绕“加快建设全国能源资源的战略保障基地”作专题介绍。自治区发展改革委负责人表示，“十五五”时期新疆将充分发挥风光资源优势，持续优化新能源开发建设、提升输送能力、拓宽多元消纳场景、完善市场交易体系，推动新能源从规模扩张向质效提升转变，助力经济社会全面绿色低碳转型。
@@ -1932,11 +1933,11 @@ Looking to the 15th Five-Year period, Xinjiang will accelerate repowering of old
     <div class="section-header" onclick="toggleSection('sec8')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="医疗健康" data-en="Health &amp; Medicine"><span class="section-icon">🏥</span>医疗健康</span>
+        <span class="section-title" data-zh="医疗健康" data-en="Health &amp; Medicine"><span class="section-icon"><i class="ic" data-ic="health" aria-hidden="true"></i></span>医疗健康</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec8')" id="fold-sec8">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec8')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec8')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec8')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec8')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -1947,7 +1948,7 @@ Looking to the 15th Five-Year period, Xinjiang will accelerate repowering of old
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec8-0" onclick="event.stopPropagation();toggleItem('item-sec8-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec8-0" onclick="event.stopPropagation();toggleZoomItem('item-sec8-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec8-0" onclick="event.stopPropagation();toggleFsItem('item-sec8-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec8-0" onclick="event.stopPropagation();toggleFsItem('item-sec8-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：10月9日，美国食品药品监督管理局（FDA）正式批准梯瓦制药（Teva）与法国生物科技公司Medincell合作开发的Weltruza（奥氮平缓释注射混悬液，研发代号TEV-749）上市，用于成人精神分裂症的治疗。该药为每月一次皮下注射的长效制剂，无需负荷剂量、无需口服补充，也无需注射后监测，为患者提供了一种全新的治疗选择，也体现出长效注射技术在精神科领域应用的进一步成熟与普及。
@@ -1980,7 +1981,7 @@ Outlook: As long-acting injection platforms mature, more psychiatric and chronic
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec8-1" onclick="event.stopPropagation();toggleItem('item-sec8-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec8-1" onclick="event.stopPropagation();toggleZoomItem('item-sec8-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec8-1" onclick="event.stopPropagation();toggleFsItem('item-sec8-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec8-1" onclick="event.stopPropagation();toggleFsItem('item-sec8-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：2026年10月，长春高新控股子公司金赛药业研发的甲磺酸亮丙瑞林注射液（6M）获国家药品监督管理局（NMPA）批准上市，获批适应症为需要雄激素去势治疗（ADT）的前列腺癌。该药为长效皮下注射制剂，是国内首个获批上市的亮丙瑞林6个月长效皮下注射剂型，将相关治疗给药间隔由传统的1个月或3个月延长至半年，属于促性腺激素释放激素激动剂（GnRHa）类药物的重要升级，具有重要的临床价值与产业意义。
@@ -2013,7 +2014,7 @@ Outlook: As China's prostate cancer population grows and diagnosis standardizes,
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec8-2" onclick="event.stopPropagation();toggleItem('item-sec8-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec8-2" onclick="event.stopPropagation();toggleZoomItem('item-sec8-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec8-2" onclick="event.stopPropagation();toggleFsItem('item-sec8-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec8-2" onclick="event.stopPropagation();toggleFsItem('item-sec8-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：9月30日，百时美施贵宝宣布，全新CELMoD药物盐酸艾泊度胺胶囊（商品名&quot;赞赋&quot;，英文通用名Iberdomide）获国家药品监督管理局附条件批准，联合达雷妥尤单抗和地塞米松，用于既往接受过至少一线治疗的复发或难治性多发性骨髓瘤成人患者。赞赋为全球首个获批上市的CELMoD类口服药物，标志着中国多发性骨髓瘤治疗迎来全新药物品类，也为患者提供了更便捷高效的口服治疗路径。
@@ -2046,11 +2047,11 @@ Outlook: As a wholly new drug class, iberdomide's approval marks China's entry i
     <div class="section-header" onclick="toggleSection('sec9')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="半导体与硬件" data-en="Semiconductors &amp; Hardware"><span class="section-icon">⚙️</span>半导体与硬件</span>
+        <span class="section-title" data-zh="半导体与硬件" data-en="Semiconductors &amp; Hardware"><span class="section-icon"><i class="ic" data-ic="settings" aria-hidden="true"></i></span>半导体与硬件</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec9')" id="fold-sec9">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec9')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec9')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec9')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec9')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -2061,7 +2062,7 @@ Outlook: As a wholly new drug class, iberdomide's approval marks China's entry i
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec9-0" onclick="event.stopPropagation();toggleItem('item-sec9-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec9-0" onclick="event.stopPropagation();toggleZoomItem('item-sec9-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec9-0" onclick="event.stopPropagation();toggleFsItem('item-sec9-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec9-0" onclick="event.stopPropagation();toggleFsItem('item-sec9-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="2026年10月中旬,全球三大处理器厂商掀起新一轮涨价潮。据台湾地区《工商时报》引述供应链消息,英特尔自9月1日起第三度上调处理器价格,其中采用台积电N3E制程高阶GPU Tile的Panther Lake高端型号涨幅高达15%至20%;高通自10月1日起将骁龙X与骁龙X2 Elite PC处理器出货价上调约10%;AMD也已通知客户,计划自2026年第四季度起将AI加速芯片、消费级GPU与主板芯片组统一提价约10%。此轮涨价由晶圆代工成本上升直接驱动,标志着PC与服务器核心硅片进入系统性提价周期。
@@ -2094,7 +2095,7 @@ In the near term, channel inventory can cushion the impact for a few weeks, but 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec9-1" onclick="event.stopPropagation();toggleItem('item-sec9-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec9-1" onclick="event.stopPropagation();toggleZoomItem('item-sec9-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec9-1" onclick="event.stopPropagation();toggleFsItem('item-sec9-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec9-1" onclick="event.stopPropagation();toggleFsItem('item-sec9-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="随着人工智能数据中心投资持续扩大,企业级固态硬盘需求快速增长,存储芯片行业迎来新一轮景气周期。据BusinessKorea 10月11日报道,市场研究机构与业内人士预计,三星电子与SK海力士今年的NAND业务营业利润将较去年增长数十倍。Mirae Asset Securities预测,三星电子NAND营业利润将从去年的2万亿韩元增至约82.6万亿韩元,增幅约41倍,营业利润率由6.9%提升至63.5%;SK海力士NAND营业利润预计从2.4万亿韩元增至55.3万亿韩元,增长约23倍。
@@ -2127,7 +2128,7 @@ Humanoid robots are emerging as a notable new growth market for memory. Counterp
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec9-2" onclick="event.stopPropagation();toggleItem('item-sec9-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec9-2" onclick="event.stopPropagation();toggleZoomItem('item-sec9-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec9-2" onclick="event.stopPropagation();toggleFsItem('item-sec9-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec9-2" onclick="event.stopPropagation();toggleFsItem('item-sec9-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="在10月12日开幕的第二十六届中国国际工业博览会上,由朗道燧岩(上海)科技有限公司研发的极紫外(EUV)光源系统样机首度公开亮相。EUV光源被视为7纳米及以下先进制程芯片制造的核心部件,被称作高端光刻机的&quot;心脏&quot;。据现场书面资料,该系统的国产化率已达90%,目前可用于芯片曝光测试,但距离商业量产仍需三至五年时间。
@@ -2160,11 +2161,11 @@ Although power and stability remain obstacles, proving the domestic EUV source r
     <div class="section-header" onclick="toggleSection('sec10')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="航天与空间" data-en="Space &amp; Aerospace"><span class="section-icon">🚀</span>航天与空间</span>
+        <span class="section-title" data-zh="航天与空间" data-en="Space &amp; Aerospace"><span class="section-icon"><i class="ic" data-ic="rocket" aria-hidden="true"></i></span>航天与空间</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec10')" id="fold-sec10">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec10')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec10')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec10')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec10')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -2175,7 +2176,7 @@ Although power and stability remain obstacles, proving the domestic EUV source r
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec10-0" onclick="event.stopPropagation();toggleItem('item-sec10-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec10-0" onclick="event.stopPropagation();toggleZoomItem('item-sec10-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec10-0" onclick="event.stopPropagation();toggleFsItem('item-sec10-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec10-0" onclick="event.stopPropagation();toggleFsItem('item-sec10-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：日本宇宙航空研究开发机构（JAXA）主导的&quot;火星卫星探测&quot;（MMX）任务计划于2026年10月19日至20日，由一枚H3运载火箭从种子岛宇宙中心发射升空。该探测器将飞往火星的两颗卫星之一——火卫一（Phobos），并力争成为人类首个从地球以外卫星表面采集样本并带回地球的航天器。此次发射窗口精确到日本标准时间20日清晨，欧洲、美国、法国和德国航天机构共同参与合作，整个任务凝聚了多国十余年的技术积累。
@@ -2208,7 +2209,7 @@ Outlook: Under current plans MMX will complete its sampling and begin the long j
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec10-1" onclick="event.stopPropagation();toggleItem('item-sec10-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec10-1" onclick="event.stopPropagation();toggleZoomItem('item-sec10-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec10-1" onclick="event.stopPropagation();toggleFsItem('item-sec10-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec10-1" onclick="event.stopPropagation();toggleFsItem('item-sec10-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：美国国家航空航天局（NASA）10月18日通报，国际空间站两名宇航员当天完成一次历时六小时二十三分的空间出舱活动，目标是为空间站更换对地通信天线。出舱者为NASA宇航员阿尼尔·梅农与欧洲航天局（ESA）法国宇航员索菲·阿德诺，两人于美国东部时间18日8时29分开始舱外作业。由于拆解旧天线耗时超出预期，新的替换天线未能在本次行走中安装，相关作业预计安排在本月25日的下一次出舱中完成，以恢复通信冗余。
@@ -2241,7 +2242,7 @@ Outlook: Under current plans the replacement antenna will be installed on the ne
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec10-2" onclick="event.stopPropagation();toggleItem('item-sec10-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec10-2" onclick="event.stopPropagation();toggleZoomItem('item-sec10-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec10-2" onclick="event.stopPropagation();toggleFsItem('item-sec10-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec10-2" onclick="event.stopPropagation();toggleFsItem('item-sec10-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：中国科学院国家天文台领衔的研究团队近期利用&quot;中国天眼&quot;FAST的射电观测数据，结合国际光学与伽马射线望远镜的多波段资料，证实FAST发现的脉冲星J0435+3233属于首例仍处于演化阶段的原生三体系统，这也是人类确认的第二例脉冲星三体。相关成果于2026年10月9日发表在国际期刊《天体物理学杂志快报》。该脉冲星自转周期仅3.2毫秒，相当于每秒约转动312圈，是自然界最精密的时钟之一。
@@ -2274,11 +2275,11 @@ Outlook: Stellar-evolution theory suggests the most massive sibling already beca
     <div class="section-header" onclick="toggleSection('sec11')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="新产品发布" data-en="New Product Launch"><span class="section-icon">📦</span>新产品发布</span>
+        <span class="section-title" data-zh="新产品发布" data-en="New Product Launch"><span class="section-icon"><i class="ic" data-ic="package" aria-hidden="true"></i></span>新产品发布</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec11')" id="fold-sec11">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec11')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec11')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec11')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec11')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -2289,7 +2290,7 @@ Outlook: Stellar-evolution theory suggests the most massive sibling already beca
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec11-0" onclick="event.stopPropagation();toggleItem('item-sec11-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec11-0" onclick="event.stopPropagation();toggleZoomItem('item-sec11-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec11-0" onclick="event.stopPropagation();toggleFsItem('item-sec11-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec11-0" onclick="event.stopPropagation();toggleFsItem('item-sec11-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="微软于2026年10月7日在&quot;Something new is coming from Windows&quot;发布会上，联合英伟达正式推出旗舰AI笔记本Surface Laptop Ultra。新机搭载代号GB10的NVIDIA RTX Spark超级芯片，将Arm架构CPU与Blackwell架构GPU集成于单块硅片，最高配20核处理器、6144个GPU核心与128GB统一内存，起售价2599.99美元，10月16日正式上市发货。
@@ -2322,7 +2323,7 @@ Surface Laptop Ultra主打本地AI算力，官方称其可在设备端运行高�
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec11-1" onclick="event.stopPropagation();toggleItem('item-sec11-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec11-1" onclick="event.stopPropagation();toggleZoomItem('item-sec11-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec11-1" onclick="event.stopPropagation();toggleFsItem('item-sec11-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec11-1" onclick="event.stopPropagation();toggleFsItem('item-sec11-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="当地时间2026年10月7日，OpenAI宣布GPT-6向全体ChatGPT用户开放，并同步推出Intelligent UI智能用户界面。新版本当天起向全球Plus、Pro、Business与Enterprise用户推送，次日扩展至免费与Go用户。付费用户使用GPT-6 Sol，免费及Go用户使用GPT-6 Luna，模型可根据问题自动组合文字、图像与可交互组件，无需用户手动指定格式。
@@ -2355,7 +2356,7 @@ OpenAI表示，Intelligent UI是让ChatGPT学会"为任务定制界面"的第一
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec11-2" onclick="event.stopPropagation();toggleItem('item-sec11-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec11-2" onclick="event.stopPropagation();toggleZoomItem('item-sec11-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec11-2" onclick="event.stopPropagation();toggleFsItem('item-sec11-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec11-2" onclick="event.stopPropagation();toggleFsItem('item-sec11-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="2026年10月6日，Figma宣布其内置智能体Figma Agent结束测试、正式面向全体用户开放。新版在延迟表现上明显优化，并新增跨平台文件搜索、可配置的设计规范指引，以及团队成员智能体实时协作等能力。生成式插件与自定义技能也同步转为正式可用，智能体现在开始按AI积分计费，免费体验阶段宣告结束。
@@ -2388,11 +2389,11 @@ Figma Agent最实用的升级在于"更懂团队规范"。库所有者可上传�
     <div class="section-header" onclick="toggleSection('sec12')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
-        <span class="section-title" data-zh="社会与舆情" data-en="Society &amp; Public Opinion"><span class="section-icon">📱</span>社会与舆情</span>
+        <span class="section-title" data-zh="社会与舆情" data-en="Society &amp; Public Opinion"><span class="section-icon"><i class="ic" data-ic="phone" aria-hidden="true"></i></span>社会与舆情</span>
         <span class="section-actions">
           <button class="fold-btn" onclick="event.stopPropagation();toggleSection('sec12')" id="fold-sec12">▼</button>
-          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec12')" title="展开具体内容">📖</button>
-          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec12')" title="读聲本节">🔊</button>
+          <button class="fold-btn" onclick="event.stopPropagation();expandSectionItems('sec12')" title="展开具体内容"><i class="ic" data-ic="book-open" aria-hidden="true"></i></button>
+          <button class="tts-btn" onclick="event.stopPropagation();speakSection('sec12')" title="读聲本节"><i class="ic" data-ic="volume" aria-hidden="true"></i></button>
         </span>
       </div>
     </div>
@@ -2403,7 +2404,7 @@ Figma Agent最实用的升级在于"更懂团队规范"。库所有者可上传�
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec12-0" onclick="event.stopPropagation();toggleItem('item-sec12-0')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec12-0" onclick="event.stopPropagation();toggleZoomItem('item-sec12-0')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec12-0" onclick="event.stopPropagation();toggleFsItem('item-sec12-0')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec12-0" onclick="event.stopPropagation();toggleFsItem('item-sec12-0')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：10月12日，国家发展改革委、民政部、国家卫生健康委联合印发《关于进一步完善价格形成机制 推动普惠养老服务提质扩面的指导意见》，首次在国家层面明确普惠支持型养老机构的具体范围，并系统提出收费管理政策。文件将符合条件的公建公营、公建民营、社会办养老机构以及公立医疗卫生机构举办的养老机构均纳入普惠支持型机构，要求省级民政部门会同有关部门制定认定办法，地级及以上民政部门负责认定并定期发布机构名单。
@@ -2436,7 +2437,7 @@ Outlook: Going forward, local development, civil affairs and health departments 
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec12-1" onclick="event.stopPropagation();toggleItem('item-sec12-1')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec12-1" onclick="event.stopPropagation();toggleZoomItem('item-sec12-1')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec12-1" onclick="event.stopPropagation();toggleFsItem('item-sec12-1')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec12-1" onclick="event.stopPropagation();toggleFsItem('item-sec12-1')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：在国务院新闻办近日举行的新闻发布会上，教育部相关负责人详解“十五五”时期教育发展部署，强调将切实践行“健康第一”的教育理念。教育部提出“2115”工作要求，即学生每天综合体育活动2小时、每天一节体育课、课间休息15分钟，并督促学校把相关要求排进课表与课后服务，广泛接受社会监督。
@@ -2469,7 +2470,7 @@ Outlook: During the plan period the ministry will build an equitable and high-qu
           <span class="item-actions">
             <button class="fold-btn" id="fold-item-sec12-2" onclick="event.stopPropagation();toggleItem('item-sec12-2')">▼</button>
             <button class="zoom-btn" id="zoom-item-sec12-2" onclick="event.stopPropagation();toggleZoomItem('item-sec12-2')" title="放大/缩小字体">□</button>
-            <button class="fs-btn" id="fs-item-sec12-2" onclick="event.stopPropagation();toggleFsItem('item-sec12-2')" title="放大该内容至网页全屏">⛶</button>
+            <button class="fs-btn" id="fs-item-sec12-2" onclick="event.stopPropagation();toggleFsItem('item-sec12-2')" title="放大该内容至网页全屏"><i class="ic" data-ic="maximize" aria-hidden="true"></i></button>
           </span>
         </div>
         <div class="item-body" data-zh="事件概述：国务院新闻办10月10日举行“开局起步‘十五五’”系列主题新闻发布会，人力资源社会保障部相关负责人介绍推进就业和社会保障高质量发展有关情况。数据显示，2026年1至9月全国城镇新增就业1052万人，完成全年目标任务的87.7%，前8个月城镇调查失业率均值为5.2%，就业形势总体稳定。
@@ -2515,7 +2516,7 @@ Outlook: Going forward, the state will coordinate wider coverage, deeper reform 
   <div class="settings-panel">
     <div class="settings-header">
       <h2 id="settingsTitle">设置</h2>
-      <button class="icon-btn" onclick="closeSettings()">✕</button>
+      <button class="icon-btn" onclick="closeSettings()"><i class="ic" data-ic="x" aria-hidden="true"></i></button>
     </div>
 
     <div class="settings-scroll">
@@ -2665,7 +2666,7 @@ Outlook: Going forward, the state will coordinate wider coverage, deeper reform 
     <div class="player-extra-group">
       <select id="voiceSel" onchange="changeVoice(this.value)">
         <option value="">默认语音</option>
-        <option value="__custom__">➕ 自定义声音…</option>
+        <option value="__custom__"> 自定义声音…</option>
       </select>
       <select id="speedSel" onchange="setSpeed(this.value)">
         <option value="0.5">0.5x</option>
@@ -2697,7 +2698,7 @@ Outlook: Going forward, the state will coordinate wider coverage, deeper reform 
     </button>
   </div>
   <div class="player-chapter" id="playerChapter" style="width:100%;font-size:12px;color:var(--text-secondary);text-align:center;margin-top:2px;min-height:16px;"></div>
-  <div class="player-hint" id="playerHint" style="width:100%;font-size:11px;color:var(--text-secondary);opacity:.7;text-align:center;margin-top:4px;">💡 建议使用默认浏览器打开，语音朗读更稳定</div>
+  <div class="player-hint" id="playerHint" style="width:100%;font-size:11px;color:var(--text-secondary);opacity:.7;text-align:center;margin-top:4px;"><i class="ic" data-ic="bulb" aria-hidden="true"></i> 建议使用默认浏览器打开，语音朗读更稳定</div>
 </div>
 <!-- Custom voice modal -->
 <div class="modal-overlay" id="voiceModal" onclick="if(event.target===this)closeVoiceModal()">
