@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>页面无法打开 — 每日全球要闻</title>
 <style>
   :root {
@@ -61,6 +61,36 @@
   @media (max-width: 480px) {
     .box { padding: 36px 24px; }
     h1 { font-size: 19px; }
+  }
+
+  /* ===== 横竖屏 / 折叠屏适配（2026-10-19 新增） ===== */
+  /* 竖屏安全区：刘海/圆角不遮挡标题栏与播放器 */
+  @media (orientation: portrait) {
+    body { padding-left: max(10px, env(safe-area-inset-left, 0px)); padding-right: max(10px, env(safe-area-inset-right, 0px)); }
+    .titlebar {
+      padding-top: max(16px, calc(env(safe-area-inset-top, 0px) + 8px));
+      padding-left: max(20px, env(safe-area-inset-left, 0px));
+      padding-right: max(20px, env(safe-area-inset-right, 0px));
+    }
+    .player { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+  }
+  /* 横屏矮高度（手机横屏读新闻）：标题栏与卡片收紧 */
+  @media (orientation: landscape) and (max-height: 560px) {
+    .titlebar { padding: 8px 20px; }
+    .section-card { padding: 14px 16px; }
+  }
+  /* 折叠屏 · 左右双视窗：正文收进左半屏，铰链不切卡片 */
+  @supports (left: env(fold-left)) {
+    @media (horizontal-viewport-segments: 2) {
+      .container { max-width: calc(env(fold-left, 50vw) - 28px); }
+    }
+  }
+  /* 折叠屏 · 书本姿态：播放器贴到铰翼下方，正文底部让位 */
+  @supports (bottom: env(fold-top)) {
+    @media (vertical-viewport-segments: 2) {
+      .container { padding-bottom: calc(40px + env(fold-height, 0px)); }
+      .player { bottom: calc(100vh - env(fold-top, 50vh) + 16px); }
+    }
   }
 </style>
 <style id="xl-anim">
