@@ -181,6 +181,31 @@
       });
     }
 
+    /* ---------- 来源透明：点出处即可按该来源筛选 ---------- */
+    var srcSt = document.createElement('style');
+    srcSt.textContent = '.item-source[data-nf-src]{cursor:pointer;display:inline-block;' +
+      'border-bottom:1px dashed rgba(127,127,127,.55)}' +
+      '.item-source[data-nf-src]:hover{color:#4f6ef7;border-bottom-color:#4f6ef7}';
+    document.head.appendChild(srcSt);
+    items.forEach(function (it) {
+      var s = it.querySelector('.item-source');
+      if (!s) return;
+      s.setAttribute('data-nf-src', '1');
+      s.title = lang === 'en' ? 'Click to filter by this source' : '点击按此来源筛选';
+      s.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var raw = (s.textContent || '').replace(/^\s*(出处|Source)\s*[:：]\s*/i, '').trim();
+        var first = raw.split(/[、,，\/|；;]/)[0].trim();
+        if (!first) return;
+        state.cat = '';
+        resetChips();
+        input.value = first;
+        apply();
+        var b = document.querySelector('.nf-bar');
+        if (b && b.scrollIntoView) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
     /* ---------- 初始化：支持首页带 ?q= 跳入 ---------- */
     var q0 = '';
     try { q0 = new URLSearchParams(location.search).get('q') || ''; } catch (e) {}
