@@ -56,11 +56,11 @@
     ].join('');
     document.head.appendChild(st);
 
-    /* ---------- 缓存文本 / 原始展开状态 / 分类名 ---------- */
+    /* ---------- 缓存文本 / 分类名 ----------
+       不记录「原始展开状态」：每日页自身脚本会在 DOMContentLoaded 时初始化分区，
+       提前快照会拿到错误状态。改为只标记本脚本临时加的 open，清除时只撤自己的。 */
     cards.forEach(function (card, i) {
       card.setAttribute('data-nf-idx', String(i));
-      var body = card.querySelector('.section-body');
-      if (body) body.setAttribute('data-nf-orig-open', body.classList.contains('open') ? '1' : '0');
       var t = card.querySelector('.section-title');
       if (t) {
         var zh = t.getAttribute('data-zh'), en = t.getAttribute('data-en');
@@ -135,8 +135,16 @@
         visible += n;
         var body = card.querySelector('.section-body');
         if (body) {
-          if (filtering && n > 0) body.classList.add('open');
-          else body.classList.toggle('open', body.getAttribute('data-nf-orig-open') === '1');
+          if (filtering && n > 0) {
+            // 仅在本脚本「新加」open 时打标，避免影响页面原本的展开状态
+            if (!body.classList.contains('open')) {
+              body.classList.add('open');
+              body.setAttribute('data-nf-forced', '1');
+            }
+          } else if (body.getAttribute('data-nf-forced') === '1') {
+            body.classList.remove('open');
+            body.removeAttribute('data-nf-forced');
+          }
         }
       });
       clearBtn.style.display = filtering ? '' : 'none';
