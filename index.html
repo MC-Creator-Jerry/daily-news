@@ -413,6 +413,29 @@ img.xl-fade.loaded { opacity: 1; }
       <p id="heroSub">全球要闻 · 全球动态 · 每日更新</p>
       <p id="heroTip"><i class="ic" data-ic="bulb" aria-hidden="true"></i> 建议使用 Safari / Chrome / Edge 等默认浏览器打开，体验更完整<br>如果图片渲染错误，请按 Ctrl+F5</p>
     </div>
+    <div class="hs-wrap">
+      <style>
+        .hs-wrap { margin: 18px 0 4px; }
+        .hs-box { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px;
+          background: rgba(255,255,255,.86); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+          border: 1px solid rgba(255,255,255,.6); box-shadow: 0 4px 18px rgba(0,0,0,.10); }
+        @media (prefers-color-scheme: dark) { .hs-box { background: rgba(26,29,39,.86); border-color: rgba(255,255,255,.10); } }
+        .hs-ico { width: 18px; height: 18px; flex: none; opacity: .6; }
+        .hs-input { flex: 1 1 auto; min-width: 0; border: none; outline: none; background: transparent;
+          color: inherit; font: inherit; font-size: 14px; }
+        .hs-input::placeholder { opacity: .6; }
+        .hs-go { flex: none; border: none; border-radius: 9px; padding: 7px 14px; background: #4f6ef7;
+          color: #fff; font: inherit; font-size: 13px; cursor: pointer; }
+        .hs-go:hover { filter: brightness(1.06); }
+        .hs-hint { margin-top: 6px; padding-left: 4px; font-size: 12px; opacity: .65; }
+      </style>
+      <div class="hs-box">
+        <svg class="hs-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="homeSearchInput" class="hs-input" type="search" placeholder="搜索往期要闻…（回车跳到最新一期）" autocomplete="off" spellcheck="false" aria-label="搜索要闻">
+        <button id="homeSearchGo" class="hs-go" type="button">搜索</button>
+      </div>
+      <div class="hs-hint">在最新一期页面内按标题 / 正文 / 来源筛选，支持分类切换</div>
+    </div>
     <div class="list" id="dayList">
       <!-- 动态生成 -->
     </div>
@@ -1254,5 +1277,35 @@ img.xl-fade.loaded { opacity: 1; }
 })();
 </script>
   <script src="scroll-keys.js?v=20260926c" defer></script>
+<script>
+/* 首页搜索：回车跳到最新一期并带上 ?q=，由 news-filter.js 自动应用 */
+(function () {
+  var inp = document.getElementById('homeSearchInput');
+  var goBtn = document.getElementById('homeSearchGo');
+  if (!inp) return;
+  function latestFile() {
+    var a = document.querySelector('#dayList .day-card');
+    if (a && a.getAttribute('href')) return a.getAttribute('href').split('#')[0];
+    if (window.__days && window.__days[0] && window.__days[0].file) return window.__days[0].file;
+    var g = document.getElementById('gotoNews');
+    if (g && g.getAttribute('href')) return g.getAttribute('href').split('#')[0];
+    return '';
+  }
+  function go() {
+    var q = inp.value.trim();
+    if (!q) { inp.focus(); return; }
+    var f = latestFile();
+    if (f) location.href = f + '?q=' + encodeURIComponent(q);
+  }
+  if (goBtn) goBtn.addEventListener('click', go);
+  inp.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); go(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    var tag = (e.target && e.target.tagName) || '';
+    if (e.key === '/' && !/INPUT|TEXTAREA/.test(tag)) { e.preventDefault(); inp.focus(); }
+  });
+})();
+</script>
 </body>
 </html>
