@@ -1,0 +1,19 @@
+{
+  "name": "每日全球要闻",
+  "short_name": "每日要闻",
+  "description": "每日全球要闻 — Jerry 的个人站点",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1f3a5f",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "./news.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
