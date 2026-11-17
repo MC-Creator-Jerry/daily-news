@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>每日全球要闻</title>
+<title>每日全球要闻｜2026-08-26</title>
 <link rel="stylesheet" href="ic.css?v=20261031a" />
 <style>
   :root {
@@ -152,44 +152,6 @@
     transition: background .2s;
   }
   .tts-reset-btn:hover { background: rgba(255,255,255,0.28); }
-  /* 顶部一键操作：展开/收起 + 字号步进（图标统一 i.ic 渐变） */
-  .tts-tool-btn {
-    margin-top: 0;
-    padding: 8px 15px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    cursor: pointer;
-    font-size: .9em;
-    font-weight: 600;
-    display: inline-flex; align-items: center; gap: 6px;
-    white-space: nowrap;
-    transition: background .2s, transform .12s;
-  }
-  .tts-tool-btn:hover { background: rgba(255,255,255,0.3); }
-  .tts-tool-btn:active { transform: scale(.94); }
-  .font-step-group {
-    display: inline-flex; align-items: center; gap: 2px;
-    margin-top: 0;
-    padding: 3px 5px;
-    border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.15);
-  }
-  .font-step-a { font-size: 1em; font-weight: 800; color: #fff; margin: 0 3px 0 4px; }
-  .font-step-btn {
-    width: 30px; height: 30px;
-    border: none; border-radius: 50%;
-    background: transparent; color: #fff;
-    cursor: pointer;
-    display: inline-flex; align-items: center; justify-content: center;
-    transition: background .2s, transform .12s;
-  }
-  .font-step-btn:hover { background: rgba(255,255,255,0.28); }
-  .font-step-btn:active { transform: scale(.9); }
-  .font-step-val { min-width: 34px; text-align: center; font-size: .82em; font-weight: 700; color: #fff; }
-  .tts-top-tools { display: inline-flex; align-items: center; gap: 10px; }
   .banner {
     width: 100%;
     height: 220px;
@@ -479,25 +441,22 @@
   input:checked + .slider:before { transform: translateX(20px); }
   /* Player */
   .player {
-    /* 尺寸随视口流体缩放：小屏更紧凑、大屏更舒展，仍保留 max-width 上限 */
-    --pu: clamp(0.78, 0.55 + 0.35vw, 1.08);           /* 统一缩放系数（用于 padding/width/gap） */
-    --p-icon: clamp(32px, 3.4vw, 46px);                /* 图标按钮：随视口缩放 */
-    --p-play: clamp(46px, 5.2vw, 68px);                /* 主播放键：随视口缩放 */
     position: fixed;
-    bottom: max(20px, env(safe-area-inset-bottom, 0px));
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: min(92vw, calc(600px * var(--pu)));
+    width: 92%;
+    max-width: 600px;
     background: var(--player-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: clamp(9px, 1.3vw, 18px) clamp(11px, 1.7vw, 22px);
+    padding: 14px 18px;
     z-index: 150;
     display: none;
     flex-direction: column;
-    gap: clamp(7px, 1.1vw, 14px);
+    gap: 12px;
     border: 1px solid var(--border);
   }
   .player.open { display: flex; }
@@ -508,7 +467,7 @@
     gap: 14px;
   }
   .p-icon-btn {
-    width: var(--p-icon, 38px); height: var(--p-icon, 38px);
+    width: 38px; height: 38px;
     border-radius: 50%;
     border: none;
     background: transparent;
@@ -523,7 +482,7 @@
   .p-icon-btn.active { color: var(--accent); background: rgba(37,99,235,0.10); }
   .p-icon-btn svg { width: 22px; height: 22px; }
   .p-play-btn {
-    width: var(--p-play, 58px); height: var(--p-play, 58px);
+    width: 58px; height: 58px;
     border-radius: 50%;
     border: none;
     background: conic-gradient(from 180deg, #f97316, #a855f7, #f97316);
@@ -689,15 +648,15 @@
   }
   .player-native-btn:hover { border-color: var(--accent); color: var(--accent); }
   .player.expanded {
-    --pu: clamp(0.85, 0.6 + 0.5vw, 1.2);
-    width: min(96vw, calc(960px * var(--pu)));
-    padding: clamp(16px, 2.2vw, 30px) clamp(16px, 2.8vw, 38px) clamp(12px, 1.8vw, 24px);
+    width: 96%;
+    max-width: 960px;
+    padding: 22px 28px 18px;
   }
-  .player.expanded .player-main-row { gap: clamp(12px, 1.8vw, 22px); }
-  .player.expanded .p-icon-btn { width: clamp(38px, 4.6vw, 56px); height: clamp(38px, 4.6vw, 56px); }
-  .player.expanded .p-icon-btn svg { width: clamp(22px, 2.6vw, 32px); height: clamp(22px, 2.6vw, 32px); }
-  .player.expanded .p-play-btn { width: clamp(58px, 7.4vw, 92px); height: clamp(58px, 7.4vw, 92px); }
-  .player.expanded .p-play-btn svg { width: clamp(26px, 3.2vw, 40px); height: clamp(26px, 3.2vw, 40px); }
+  .player.expanded .player-main-row { gap: 18px; }
+  .player.expanded .p-icon-btn { width: 44px; height: 44px; }
+  .player.expanded .p-icon-btn svg { width: 26px; height: 26px; }
+  .player.expanded .p-play-btn { width: 72px; height: 72px; }
+  .player.expanded .p-play-btn svg { width: 32px; height: 32px; }
   .player.expanded .player-progress { height: 12px; }
   .player.expanded .player-progress::-webkit-slider-thumb { width: 20px; height: 20px; }
   .player.expanded .player-time { font-size: .9em; }
@@ -739,7 +698,8 @@
     .title-btns { gap: 4px; }
     .title-btn { padding: 3px 6px; font-size: .65em; }
     .tts-main-btn, .tts-reset-btn { padding: 6px 12px; font-size: .82em; }
-    .player { width: min(98vw, 600px); bottom: max(6px, env(safe-area-inset-bottom, 0px)); }
+    .player { width: 98%; bottom: 6px; padding: 10px; gap: 8px; }
+    .player.expanded { padding: 16px 14px 12px; }
     .section-titlebar { padding: 8px 10px; }
     .section-title { font-size: .95em; }
     .icon-btn { height: 34px; padding: 0 12px; font-size: 12.5px; }
@@ -749,6 +709,12 @@
     .item-body { font-size: .9em; }
     .settings-panel { padding: 0; }
     .modal { padding: 14px; }
+    .p-icon-btn { width: 34px; height: 34px; }
+    .p-icon-btn svg { width: 20px; height: 20px; }
+    .p-play-btn { width: 50px; height: 50px; }
+    .p-play-btn svg { width: 22px; height: 22px; }
+    .player.expanded .p-icon-btn { width: 40px; height: 40px; }
+    .player.expanded .p-play-btn { width: 58px; height: 58px; }
     .vol-btn { height: 34px; padding: 0 8px; min-width: 34px; font-size: 12px; }
     .player-reset-btn, .player-native-btn { padding: 6px 10px; font-size: .78em; }
     .player-extra-group { gap: 6px; }
@@ -906,45 +872,6 @@ img.xl-fade.loaded { opacity: 1; }
   * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   .xl-reveal, .section-card, .prod-card, .feature-card { opacity: 1 !important; }
 }
-
-/* ========== 阅读进度条 & 分类目录（体验增强） ========== */
-#readProgress {
-  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
-  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #fff));
-  z-index: 400; pointer-events: none; border-radius: 0 3px 3px 0;
-  transition: width .08s linear;
-  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
-}
-#tocFab {
-  position: fixed; right: 16px; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); z-index: 140;
-  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border);
-  background: var(--player-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  color: var(--text); cursor: pointer; display: none; align-items: center; justify-content: center;
-  box-shadow: var(--shadow); transition: transform .15s, background .2s;
-}
-#tocFab.show { display: inline-flex; }
-#tocFab:hover { transform: translateY(-2px); color: var(--accent); }
-#tocFab svg { width: 22px; height: 22px; }
-#tocPanel {
-  position: fixed; right: 16px; bottom: calc(140px + env(safe-area-inset-bottom, 0px)); z-index: 141;
-  width: min(300px, 88vw); max-height: 55vh; overflow-y: auto;
-  background: var(--player-bg); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
-  padding: 12px; display: none;
-}
-#tocPanel.open { display: block; animation: slideIn .2s ease; }
-#tocPanel .toc-h { font-weight: 800; font-size: .95em; margin: 2px 4px 10px; opacity: .85; }
-#tocPanel a {
-  display: block; padding: 8px 10px; border-radius: 8px; text-decoration: none;
-  color: var(--text); font-size: .9em; line-height: 1.3; transition: background .15s;
-}
-#tocPanel a:hover, #tocPanel a.active { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
-@media (max-width: 479px) {
-  #tocFab { width: 42px; height: 42px; right: 12px; bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
-  #tocPanel { right: 12px; bottom: calc(124px + env(safe-area-inset-bottom, 0px)); }
-}
-
-
 </style>
   <link rel="manifest" href="manifest.webmanifest" />
   <meta property="og:type" content="website" />
@@ -957,38 +884,23 @@ img.xl-fade.loaded { opacity: 1; }
   <meta name="twitter:title" content="每日全球要闻" />
 </head>
 <body>
-<div id="readProgress" aria-hidden="true"></div>
-<button id="tocFab" type="button" title="分类目录" aria-label="分类目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
-<nav id="tocPanel" aria-label="分类目录"></nav>
-
-
-
 
 <div class="titlebar" id="titlebar">
   <div class="title-row">
     <div>
-      <div class="title-text" id="pageTitle">每日全球要闻</div>
+      <div class="title-text" id="pageTitle">每日全球要闻｜2026-08-26（星期三）</div>
       <div class="subtitle-row">
         <span id="welcomeText">祝您拥有愉快的一天</span>
         <span id="aiGenText">内容由 AI 生成</span>
       </div>
       <div class="tts-btn-row">
         <button class="tts-main-btn" id="ttsMainBtn" onclick="playAll()"><i class="ic" data-ic="volume" aria-hidden="true"></i> <span id="ttsMainLabel">全文语音收听</span></button>
-        <div class="tts-top-tools">
-          <button class="tts-tool-btn" id="foldAllBtn" onclick="toggleFoldAll()" title="展开全部"><i class="ic" data-ic="expand" aria-hidden="true"></i> <span id="foldAllLabel">展开全部</span></button>
-          <span class="font-step-group" role="group" aria-label="Font size stepper">
-            <span class="font-step-a">A</span>
-            <button class="font-step-btn" id="fontMinusBtn" onclick="stepFont(-1)" title="缩小字体"><i class="ic" data-ic="minus" aria-hidden="true"></i></button>
-            <span class="font-step-val" id="fontStepVal">15px</span>
-            <button class="font-step-btn" id="fontPlusBtn" onclick="stepFont(1)" title="放大字体"><i class="ic" data-ic="plus" aria-hidden="true"></i></button>
-          </span>
-        </div>
       </div>
     </div>
     <div class="title-btns">
       <button class="title-btn" id="homeBtn" onclick="goHome()" title="返回新闻主页"><span class="tb-icon"><i class="ic" data-ic="home" aria-hidden="true"></i></span><span id="homeLabel">新闻主页</span></button>
       <button class="title-btn" id="shareBtn" onclick="sharePage()" title="分享"><span class="tb-icon"><i class="ic" data-ic="arrow-up" aria-hidden="true"></i></span><span id="shareLabel">分享</span></button>
-      <button class="title-btn" id="settingsBtn" onclick="openSettings()" title="设置"><span class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span id="settingsLabel">设置</span></button>
+      <button class="title-btn" id="settingsBtn" onclick="openSettings()" title="设置"><span class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1H21a2 2 0 0 1 0-4h-.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span id="settingsLabel">设置</span></button>
     </div>
   </div>
 </div>
@@ -1002,6 +914,10 @@ img.xl-fade.loaded { opacity: 1; }
 <img class="banner" id="bannerImg" src="img/banner.jpg" alt="banner" fetchpriority="high" decoding="async">
 
 <div class="container">
+  <div class="global-actions">
+    <button onclick="expandAll()" id="btnExpandAll">展开全部</button>
+    <button onclick="collapseAll()" id="btnCollapseAll">收起全部</button>
+  </div>
 
 
   <!-- CONTENT_SECTIONS_PLACEHOLDER -->
@@ -2268,9 +2184,7 @@ var safeLS = (function() {
 
   function applyLang() {
     var isZh = lang === 'zh';
-    var fullTitle = (isZh ? '每日全球要闻｜' : 'Daily Global Brief｜') + dateStr + '（' + (isZh ? weekDay : weekDayEn) + '）';
-    document.getElementById('pageTitle').textContent = fullTitle;
-    document.title = fullTitle;
+    document.getElementById('pageTitle').textContent = (isZh ? '每日全球要闻｜' : 'Daily Global Brief｜') + dateStr + '（' + (isZh ? weekDay : weekDayEn) + '）';
     document.getElementById('welcomeText').textContent = isZh ? welcome.zh : welcome.en;
     document.getElementById('aiGenText').textContent = isZh ? '内容由 AI 生成' : 'Content generated by AI';
     document.getElementById('ttsMainLabel').textContent = isZh ? '全文语音收听' : 'Listen to all';
@@ -2288,17 +2202,8 @@ var safeLS = (function() {
       nativeLabel.textContent = nativeMode ? (isZh ? '系统原生' : 'Native') : (isZh ? '智能分块' : 'Chunked');
     }
     document.getElementById('closingText').textContent = '—— ' + (isZh ? closing.zh : closing.en) + ' ——';
-    var fab = document.getElementById('foldAllBtn');
-    if (fab) {
-      var fabLabel = foldAllExpanded
-        ? (isZh ? '收起全部' : 'Collapse all')
-        : (isZh ? '展开全部' : 'Expand all');
-      fab.title = fabLabel;
-      var fal = document.getElementById('foldAllLabel');
-      if (fal) fal.textContent = fabLabel;
-    }
-    var fmb = document.getElementById('fontMinusBtn'); if (fmb) fmb.title = isZh ? '缩小字体' : 'Decrease font';
-    var fpb = document.getElementById('fontPlusBtn'); if (fpb) fpb.title = isZh ? '放大字体' : 'Increase font';
+    document.getElementById('btnExpandAll').textContent = isZh ? '展开全部' : 'Expand all';
+    document.getElementById('btnCollapseAll').textContent = isZh ? '收起全部' : 'Collapse all';
     document.getElementById('settingsTitle').textContent = isZh ? '设置' : 'Settings';
     document.getElementById('lblLang').textContent = isZh ? '语言' : 'Language';
     document.getElementById('lblTheme').textContent = isZh ? '主题' : 'Theme';
@@ -2392,8 +2297,6 @@ var safeLS = (function() {
     document.documentElement.style.setProperty('--font-base', fontEnabled ? (fontSize + 'px') : '15px');
     document.getElementById('rngFont').value = fontSize;
     document.getElementById('fontVal').textContent = fontSize + 'px';
-    var fsv = document.getElementById('fontStepVal');
-    if (fsv) fsv.textContent = (fontEnabled ? fontSize : 15) + 'px';
     var t = document.getElementById('chkFontToggle');
     if (t) t.checked = fontEnabled;
   }
@@ -2628,31 +2531,6 @@ var safeLS = (function() {
     bodies.forEach(function(b) { b.classList.toggle('open', anyClosed); });
     section.querySelectorAll('.item-title .fold-btn').forEach(function(b) { b.innerHTML = foldBtnHtml(anyClosed); });
   };
-  var foldAllExpanded = false;
-  window.toggleFoldAll = function() {
-    foldAllExpanded = !foldAllExpanded;
-    if (foldAllExpanded) expandAll(); else collapseAll();
-    var fab = document.getElementById('foldAllBtn');
-    var isZh = lang === 'zh';
-    var label = foldAllExpanded
-      ? (isZh ? '收起全部' : 'Collapse all')
-      : (isZh ? '展开全部' : 'Expand all');
-    var fal = document.getElementById('foldAllLabel');
-    if (fal) fal.textContent = label;
-    if (fab) {
-      fab.title = label;
-      var fi = fab.querySelector('.ic');
-      if (fi) fi.setAttribute('data-ic', foldAllExpanded ? 'minus' : 'expand');
-    }
-  };
-  window.stepFont = function(dir) {
-    var next = Math.max(12, Math.min(22, fontSize + dir));
-    if (next === fontSize) return;
-    setFont(next);
-    var fsv = document.getElementById('fontStepVal');
-    if (fsv) fsv.textContent = (fontEnabled ? fontSize : 15) + 'px';
-  };
-
   window.expandAll = function() {
     document.querySelectorAll('.section-body').forEach(function(b) { b.classList.add('open'); });
     document.querySelectorAll('.section-actions').forEach(function(actions) {
@@ -3532,74 +3410,5 @@ var safeLS = (function() {
 </script>
   <script src="scroll-keys.js?v=20260926c" defer></script>
   <script src="assets/ui-kit.js?v=20261109a" data-uikit="top,share,lazy,keys,skeleton,sw"></script>
-<script>
-/* ===== 阅读进度条 + 分类目录（体验增强，独立于主脚本） ===== */
-(function(){
-  'use strict';
-  var bar = document.getElementById('readProgress');
-  var fab = document.getElementById('tocFab');
-  var panel = document.getElementById('tocPanel');
-
-  // 阅读进度
-  function updateProgress(){
-    if(!bar) return;
-    var h = document.documentElement.scrollHeight - window.innerHeight;
-    var p = h > 0 ? (window.scrollY / h) * 100 : 0;
-    bar.style.width = (p<0?0:p>100?100:p) + '%';
-  }
-  window.addEventListener('scroll', updateProgress, {passive:true});
-  window.addEventListener('resize', updateProgress);
-  updateProgress();
-
-  // 分类目录：运行时扫描 section-card，标题取当前 DOM 文本（自动跟随语言）
-  function titleOf(card){
-    var t = card.querySelector('.section-title');
-    if(!t) return '';
-    var s = (t.innerText || t.textContent || '').replace(/\s+/g,' ').trim();
-    return s || '分类';
-  }
-  function buildToc(){
-    if(!panel) return;
-    var cards = Array.prototype.slice.call(document.querySelectorAll('.section-card'));
-    if(!cards.length) return;
-    var h = '<div class="toc-h">' + (document.documentElement.lang==='en' ? 'Sections' : '分类目录') + '</div>';
-    cards.forEach(function(c){
-      if(!c.id) return;
-      h += '<a href="#' + c.id + '" data-target="' + c.id + '">' + titleOf(c) + '</a>';
-    });
-    panel.innerHTML = h;
-    if(fab) fab.classList.add('show');
-  }
-  // 页面内容可能延迟渲染，尝试多次直到拿到分类
-  var tries = 0;
-  var t = setInterval(function(){
-    buildToc();
-    if(document.querySelectorAll('.section-card').length || ++tries > 20) clearInterval(t);
-  }, 300);
-
-  if(fab && panel){
-    fab.addEventListener('click', function(e){
-      e.stopPropagation();
-      var open = panel.classList.toggle('open');
-      if(open) buildToc(); // 打开时刷新标题（语言切换后同步）
-    });
-    panel.addEventListener('click', function(e){
-      var a = e.target.closest('a[data-target]');
-      if(!a) return;
-      e.preventDefault();
-      var el = document.getElementById(a.getAttribute('data-target'));
-      if(el){
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-        Array.prototype.forEach.call(panel.querySelectorAll('a'), function(x){x.classList.remove('active');});
-        a.classList.add('active');
-      }
-      panel.classList.remove('open');
-    });
-    document.addEventListener('click', function(e){
-      if(!panel.contains(e.target) && e.target!==fab && !fab.contains(e.target)) panel.classList.remove('open');
-    });
-  }
-})();
-</script>
 </body>
 </html>
