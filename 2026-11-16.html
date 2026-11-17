@@ -162,6 +162,44 @@
     transition: background .2s;
   }
   .tts-reset-btn:hover { background: rgba(255,255,255,0.28); }
+  /* 顶部一键操作：展开/收起 + 字号步进（图标统一 i.ic 渐变） */
+  .tts-tool-btn {
+    margin-top: 0;
+    padding: 8px 15px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    cursor: pointer;
+    font-size: .9em;
+    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+    transition: background .2s, transform .12s;
+  }
+  .tts-tool-btn:hover { background: rgba(255,255,255,0.3); }
+  .tts-tool-btn:active { transform: scale(.94); }
+  .font-step-group {
+    display: inline-flex; align-items: center; gap: 2px;
+    margin-top: 0;
+    padding: 3px 5px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.15);
+  }
+  .font-step-a { font-size: 1em; font-weight: 800; color: #fff; margin: 0 3px 0 4px; }
+  .font-step-btn {
+    width: 30px; height: 30px;
+    border: none; border-radius: 50%;
+    background: transparent; color: #fff;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background .2s, transform .12s;
+  }
+  .font-step-btn:hover { background: rgba(255,255,255,0.28); }
+  .font-step-btn:active { transform: scale(.9); }
+  .font-step-val { min-width: 34px; text-align: center; font-size: .82em; font-weight: 700; color: #fff; }
+  .tts-top-tools { display: inline-flex; align-items: center; gap: 10px; }
   .banner {
     width: 100%;
     height: 220px;
@@ -1030,6 +1068,15 @@ img.xl-fade.loaded { opacity: 1; }
       </div>
       <div class="tts-btn-row">
         <button class="tts-main-btn" id="ttsMainBtn" onclick="playAll()"><i class="ic" data-ic="volume" aria-hidden="true"></i> <span id="ttsMainLabel">全文语音收听</span></button>
+        <div class="tts-top-tools">
+          <button class="tts-tool-btn" id="foldAllBtn" onclick="toggleFoldAll()" title="展开全部"><i class="ic" data-ic="expand" aria-hidden="true"></i> <span id="foldAllLabel">展开全部</span></button>
+          <span class="font-step-group" role="group" aria-label="Font size stepper">
+            <span class="font-step-a">A</span>
+            <button class="font-step-btn" id="fontMinusBtn" onclick="stepFont(-1)" title="缩小字体"><i class="ic" data-ic="minus" aria-hidden="true"></i></button>
+            <span class="font-step-val" id="fontStepVal">15px</span>
+            <button class="font-step-btn" id="fontPlusBtn" onclick="stepFont(1)" title="放大字体"><i class="ic" data-ic="plus" aria-hidden="true"></i></button>
+          </span>
+        </div>
       </div>
     </div>
     <div class="title-btns">
@@ -1049,10 +1096,6 @@ img.xl-fade.loaded { opacity: 1; }
 <img class="banner" id="bannerImg" src="img/banner.jpg" alt="banner" fetchpriority="high" decoding="async" onerror="this.onerror=null;this.style.display='none'">
 
 <div class="container">
-  <div class="global-actions">
-    <button onclick="expandAll()" id="btnExpandAll">展开全部</button>
-    <button onclick="collapseAll()" id="btnCollapseAll">收起全部</button>
-  </div>
 
 
   <!-- CONTENT_SECTIONS_PLACEHOLDER -->
@@ -3415,8 +3458,17 @@ var safeLS = (function() {
       nativeLabel.textContent = nativeMode ? (isZh ? '系统原生' : 'Native') : (isZh ? '智能分块' : 'Chunked');
     }
     document.getElementById('closingText').textContent = '—— ' + (isZh ? closing.zh : closing.en) + ' ——';
-    document.getElementById('btnExpandAll').textContent = isZh ? '展开全部' : 'Expand all';
-    document.getElementById('btnCollapseAll').textContent = isZh ? '收起全部' : 'Collapse all';
+    var fab = document.getElementById('foldAllBtn');
+    if (fab) {
+      var fabLabel = foldAllExpanded
+        ? (isZh ? '收起全部' : 'Collapse all')
+        : (isZh ? '展开全部' : 'Expand all');
+      fab.title = fabLabel;
+      var fal = document.getElementById('foldAllLabel');
+      if (fal) fal.textContent = fabLabel;
+    }
+    var fmb = document.getElementById('fontMinusBtn'); if (fmb) fmb.title = isZh ? '缩小字体' : 'Decrease font';
+    var fpb = document.getElementById('fontPlusBtn'); if (fpb) fpb.title = isZh ? '放大字体' : 'Increase font';
     document.getElementById('settingsTitle').textContent = isZh ? '设置' : 'Settings';
     document.getElementById('lblLang').textContent = isZh ? '语言' : 'Language';
     document.getElementById('lblTheme').textContent = isZh ? '主题' : 'Theme';
@@ -3514,6 +3566,8 @@ var safeLS = (function() {
     document.documentElement.style.setProperty('--font-base', fontEnabled ? (fontSize + 'px') : '15px');
     document.getElementById('rngFont').value = fontSize;
     document.getElementById('fontVal').textContent = fontSize + 'px';
+    var fsv = document.getElementById('fontStepVal');
+    if (fsv) fsv.textContent = (fontEnabled ? fontSize : 15) + 'px';
     var t = document.getElementById('chkFontToggle');
     if (t) t.checked = fontEnabled;
   }
@@ -3812,6 +3866,31 @@ var safeLS = (function() {
     bodies.forEach(function(b) { b.classList.toggle('open', anyClosed); });
     section.querySelectorAll('.item-title .fold-btn').forEach(function(b) { b.innerHTML = foldBtnHtml(anyClosed); });
   };
+  var foldAllExpanded = false;
+  window.toggleFoldAll = function() {
+    foldAllExpanded = !foldAllExpanded;
+    if (foldAllExpanded) expandAll(); else collapseAll();
+    var fab = document.getElementById('foldAllBtn');
+    var isZh = lang === 'zh';
+    var label = foldAllExpanded
+      ? (isZh ? '收起全部' : 'Collapse all')
+      : (isZh ? '展开全部' : 'Expand all');
+    var fal = document.getElementById('foldAllLabel');
+    if (fal) fal.textContent = label;
+    if (fab) {
+      fab.title = label;
+      var fi = fab.querySelector('.ic');
+      if (fi) fi.setAttribute('data-ic', foldAllExpanded ? 'minus' : 'expand');
+    }
+  };
+  window.stepFont = function(dir) {
+    var next = Math.max(12, Math.min(22, fontSize + dir));
+    if (next === fontSize) return;
+    setFont(next);
+    var fsv = document.getElementById('fontStepVal');
+    if (fsv) fsv.textContent = (fontEnabled ? fontSize : 15) + 'px';
+  };
+
   window.expandAll = function() {
     document.querySelectorAll('.section-body').forEach(function(b) { b.classList.add('open'); });
     document.querySelectorAll('.section-actions').forEach(function(actions) {
