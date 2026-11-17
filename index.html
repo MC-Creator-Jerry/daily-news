@@ -1370,7 +1370,11 @@ img.xl-fade.loaded { opacity: 1; }
 
   function esc(x){ var d=document.createElement('div'); d.textContent=x||''; return d.innerHTML; }
 
-  fetch('dates.json', {cache:'no-store'})
+  // 6 秒总超时：慢网络下不永久停在“正在加载”，降级为可点击的兜底文案
+  var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+  var timer = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 6000);
+  var sig = ctrl ? { signal: ctrl.signal } : {};
+  fetch('dates.json', Object.assign({cache:'no-store'}, sig))
     .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
     .then(function(m){
       var arr = (m && Array.isArray(m.dates)) ? m.dates : [];
@@ -1379,7 +1383,7 @@ img.xl-fade.loaded { opacity: 1; }
       var file = latest.file, date = latest.date;
       if(card) card.href = file;
       if(dateEl) dateEl.textContent = date;
-      return fetch(file, {cache:'force-cache'}).then(function(r){
+      return fetch(file, Object.assign({cache:'force-cache'}, sig)).then(function(r){
         if(!r.ok) throw new Error('fetch edition failed');
         return r.text();
       }).then(function(html){
@@ -1406,9 +1410,11 @@ img.xl-fade.loaded { opacity: 1; }
       });
     })
     .catch(function(){
+      if(timer) clearTimeout(timer);
       body.innerHTML = '<div class="glance-skel">' +
         (isEn ? 'Open the latest edition to explore today’s top stories.' : '打开最新一期，浏览今日全球要闻。') + '</div>';
-    });
+    })
+    .then(function(){ if(timer) clearTimeout(timer); });
 })();
 </script>
 
