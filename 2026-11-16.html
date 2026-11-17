@@ -541,22 +541,25 @@
   input:checked + .slider:before { transform: translateX(20px); }
   /* Player */
   .player {
+    /* 尺寸随视口流体缩放：小屏更紧凑、大屏更舒展，仍保留 max-width 上限 */
+    --pu: clamp(0.78, 0.55 + 0.35vw, 1.08);           /* 统一缩放系数（用于 padding/width/gap） */
+    --p-icon: clamp(32px, 3.4vw, 46px);                /* 图标按钮：随视口缩放 */
+    --p-play: clamp(46px, 5.2vw, 68px);                /* 主播放键：随视口缩放 */
     position: fixed;
-    bottom: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
-    width: 92%;
-    max-width: 600px;
+    width: min(92vw, calc(600px * var(--pu)));
     background: var(--player-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 14px 18px;
+    padding: clamp(9px, 1.3vw, 18px) clamp(11px, 1.7vw, 22px);
     z-index: 150;
     display: none;
     flex-direction: column;
-    gap: 12px;
+    gap: clamp(7px, 1.1vw, 14px);
     border: 1px solid var(--border);
   }
   .player.open { display: flex; }
@@ -567,7 +570,7 @@
     gap: 14px;
   }
   .p-icon-btn {
-    width: 38px; height: 38px;
+    width: var(--p-icon, 38px); height: var(--p-icon, 38px);
     border-radius: 50%;
     border: none;
     background: transparent;
@@ -582,7 +585,7 @@
   .p-icon-btn.active { color: var(--accent); background: rgba(37,99,235,0.10); }
   .p-icon-btn svg { width: 22px; height: 22px; }
   .p-play-btn {
-    width: 58px; height: 58px;
+    width: var(--p-play, 58px); height: var(--p-play, 58px);
     border-radius: 50%;
     border: none;
     background: conic-gradient(from 180deg, #f97316, #a855f7, #f97316);
@@ -748,15 +751,15 @@
   }
   .player-native-btn:hover { border-color: var(--accent); color: var(--accent); }
   .player.expanded {
-    width: 96%;
-    max-width: 960px;
-    padding: 22px 28px 18px;
+    --pu: clamp(0.85, 0.6 + 0.5vw, 1.2);
+    width: min(96vw, calc(960px * var(--pu)));
+    padding: clamp(16px, 2.2vw, 30px) clamp(16px, 2.8vw, 38px) clamp(12px, 1.8vw, 24px);
   }
-  .player.expanded .player-main-row { gap: 18px; }
-  .player.expanded .p-icon-btn { width: 44px; height: 44px; }
-  .player.expanded .p-icon-btn svg { width: 26px; height: 26px; }
-  .player.expanded .p-play-btn { width: 72px; height: 72px; }
-  .player.expanded .p-play-btn svg { width: 32px; height: 32px; }
+  .player.expanded .player-main-row { gap: clamp(12px, 1.8vw, 22px); }
+  .player.expanded .p-icon-btn { width: clamp(38px, 4.6vw, 56px); height: clamp(38px, 4.6vw, 56px); }
+  .player.expanded .p-icon-btn svg { width: clamp(22px, 2.6vw, 32px); height: clamp(22px, 2.6vw, 32px); }
+  .player.expanded .p-play-btn { width: clamp(58px, 7.4vw, 92px); height: clamp(58px, 7.4vw, 92px); }
+  .player.expanded .p-play-btn svg { width: clamp(26px, 3.2vw, 40px); height: clamp(26px, 3.2vw, 40px); }
   .player.expanded .player-progress { height: 12px; }
   .player.expanded .player-progress::-webkit-slider-thumb { width: 20px; height: 20px; }
   .player.expanded .player-time { font-size: .9em; }
@@ -798,8 +801,7 @@
     .title-btns { gap: 4px; }
     .title-btn { padding: 3px 6px; font-size: .65em; }
     .tts-main-btn, .tts-reset-btn { padding: 6px 12px; font-size: .82em; }
-    .player { width: 98%; bottom: 6px; padding: 10px; gap: 8px; }
-    .player.expanded { padding: 16px 14px 12px; }
+    .player { width: min(98vw, 600px); bottom: max(6px, env(safe-area-inset-bottom, 0px)); }
     .section-titlebar { padding: 8px 10px; }
     .section-title { font-size: .95em; }
     .icon-btn { height: 34px; padding: 0 12px; font-size: 12.5px; }
@@ -811,12 +813,6 @@
     .item-body { font-size: .9em; }
     .settings-panel { padding: 0; }
     .modal { padding: 14px; }
-    .p-icon-btn { width: 34px; height: 34px; }
-    .p-icon-btn svg { width: 20px; height: 20px; }
-    .p-play-btn { width: 50px; height: 50px; }
-    .p-play-btn svg { width: 22px; height: 22px; }
-    .player.expanded .p-icon-btn { width: 40px; height: 40px; }
-    .player.expanded .p-play-btn { width: 58px; height: 58px; }
     .vol-btn { height: 34px; padding: 0 8px; min-width: 34px; font-size: 12px; }
     .player-reset-btn, .player-native-btn { padding: 6px 10px; font-size: .78em; }
     .player-extra-group { gap: 6px; }
@@ -971,6 +967,44 @@ a.xl-link:hover::after, .nav-link:hover::after, .bar-btn.link:hover::after { tra
 img.xl-fade { opacity: 0; transition: opacity var(--xl-t) ease; }
 img.xl-fade.loaded { opacity: 1; }
 
+
+/* ========== 阅读进度条 & 分类目录（体验增强） ========== */
+#readProgress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #fff));
+  z-index: 400; pointer-events: none; border-radius: 0 3px 3px 0;
+  transition: width .08s linear;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+#tocFab {
+  position: fixed; right: 16px; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); z-index: 140;
+  width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--player-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  color: var(--text); cursor: pointer; display: none; align-items: center; justify-content: center;
+  box-shadow: var(--shadow); transition: transform .15s, background .2s;
+}
+#tocFab.show { display: inline-flex; }
+#tocFab:hover { transform: translateY(-2px); color: var(--accent); }
+#tocFab svg { width: 22px; height: 22px; }
+#tocPanel {
+  position: fixed; right: 16px; bottom: calc(140px + env(safe-area-inset-bottom, 0px)); z-index: 141;
+  width: min(300px, 88vw); max-height: 55vh; overflow-y: auto;
+  background: var(--player-bg); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 12px; display: none;
+}
+#tocPanel.open { display: block; animation: slideIn .2s ease; }
+#tocPanel .toc-h { font-weight: 800; font-size: .95em; margin: 2px 4px 10px; opacity: .85; }
+#tocPanel a {
+  display: block; padding: 8px 10px; border-radius: 8px; text-decoration: none;
+  color: var(--text); font-size: .9em; line-height: 1.3; transition: background .15s;
+}
+#tocPanel a:hover, #tocPanel a.active { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+@media (max-width: 479px) {
+  #tocFab { width: 42px; height: 42px; right: 12px; bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+  #tocPanel { right: 12px; bottom: calc(124px + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* 无障碍：尊重减弱动画偏好 */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
@@ -981,11 +1015,15 @@ img.xl-fade.loaded { opacity: 1; }
   <link rel="manifest" href="manifest.webmanifest" />
 </head>
 <body>
+<div id="readProgress" aria-hidden="true"></div>
+<button id="tocFab" type="button" title="分类目录" aria-label="分类目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></button>
+<nav id="tocPanel" aria-label="分类目录"></nav>
+
 
 <div class="titlebar" id="titlebar">
   <div class="title-row">
     <div>
-      <div class="title-text" id="pageTitle">每日全球要闻｜2026-11-16（周一）</div>
+      <div class="title-text" id="pageTitle">每日全球要闻｜2026-11-16（）</div>
       <div class="subtitle-row">
         <span id="welcomeText">祝您拥有愉快的一天</span>
         <span id="aiGenText">内容由 AI 生成</span>
@@ -997,7 +1035,7 @@ img.xl-fade.loaded { opacity: 1; }
     <div class="title-btns">
       <button class="title-btn" id="homeBtn" onclick="goHome()" title="返回新闻主页"><span class="tb-icon"><i class="ic" data-ic="home" aria-hidden="true"></i></span><span id="homeLabel">新闻主页</span></button>
       <button class="title-btn" id="shareBtn" onclick="sharePage()" title="分享"><span class="tb-icon"><i class="ic" data-ic="arrow-up" aria-hidden="true"></i></span><span id="shareLabel">分享</span></button>
-      <button class="title-btn" id="settingsBtn" onclick="openSettings()" title="设置"><span class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1H21a2 2 0 0 1 0-4h-.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span id="settingsLabel">设置</span></button>
+      <button class="title-btn" id="settingsBtn" onclick="openSettings()" title="设置"><span class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><span id="settingsLabel">设置</span></button>
     </div>
   </div>
 </div>
@@ -1018,7 +1056,7 @@ img.xl-fade.loaded { opacity: 1; }
 
 
   <!-- CONTENT_SECTIONS_PLACEHOLDER -->
-    <div class="section-card" id="sec0">
+  <div class="section-card" id="sec0">
     <div class="section-header" onclick="toggleSection('sec0')">
       <img src="" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none'">
       <div class="section-titlebar">
@@ -2546,27 +2584,27 @@ The news sparked discussion among parents. For many families, more places promis
     </div>
   </div>
 
-  <div class="closing" id="closingText" data-zh="信息洪流之中，愿这份双语记录为你留一处可安静阅读的角落。明日此时，我们再会。" data-en="Amid the flood of information, may this bilingual record leave you a quiet corner to read. We meet again this time tomorrow.">信息洪流之中，愿这份双语记录为你留一处可安静阅读的角落。明日此时，我们再会。</div>
+  <div class="closing" id="closingText" data-zh="信息洪流之中，愿这份双语记录为你留一处可安静阅读的角落。明日此时，我们再会。" data-en="信息洪流之中，愿这份双语记录为你留一处可安静阅读的角落。明日此时，我们再会。">信息洪流之中，愿这份双语记录为你留一处可安静阅读的角落。明日此时，我们再会。</div>
 
   <div class="summary">
     <h3 id="summaryTitle">核心主线</h3>
-    <p id="summaryBody" data-zh="本日要闻覆盖上热搜、军事、财经、人工智能、科技、国际政治、产业商业、能源与气候、医疗健康、半导体与硬件、航天与空间、新产品发布、社会与舆情共十三个领域，各取三条。互联网热度由电竞与网络玩梗主导：BLG战队3:1逆转GEN夺得S16冠军、Knight成为史上首位中国籍FMVP中单，西雅图&quot;网红浣熊&quot;Jimothy收到死亡威胁引粉丝紧急隐去行踪，&quot;你的内存该进数据中心&quot;梗让Sam Altman被戏称&quot;Ram Altman&quot;。军事方面，印度启动第五届&quot;海上警戒-26&quot;全印海岸防御演习、波兰接收2026年最后一批韩国K2坦克与K9火炮、美国陆军授出41亿美元合同扩充&quot;间接火力防护能力&quot;。
+    <p id="summaryBody" data-zh="本日要闻覆盖上热搜、军事、财经、人工智能、科技、国际政治、产业商业、能源与气候、医疗健康、半导体与硬件、航天与空间、新产品发布、社会与舆情共十三个领域，各取三条。互联网热度由电竞与网络玩梗主导：BLG战队3:1逆转GEN夺得S16冠军、Knight成为史上首位中国籍FMVP中单，西雅图&amp;quot;网红浣熊&amp;quot;Jimothy收到死亡威胁引粉丝紧急隐去行踪，&amp;quot;你的内存该进数据中心&amp;quot;梗让Sam Altman被戏称&amp;quot;Ram Altman&amp;quot;。军事方面，印度启动第五届&amp;quot;海上警戒-26&amp;quot;全印海岸防御演习、波兰接收2026年最后一批韩国K2坦克与K9火炮、美国陆军授出41亿美元合同扩充&amp;quot;间接火力防护能力&amp;quot;。
 
 财经与AI双线承压突破：美国10月CPI环比超预期推升美联储12月加息预期、10月PPI同比升至6.5%创近四年高位、美元指数升至19个月高位而日元逼近160关口触发干预警戒；AI领域澳大利亚立法强制前沿AI安全义务并设专责监管机构、谷歌DeepMind发布AlphaGenome 2将基因变异预测推进至单细胞分辨率、AI训练平台Mercor融资7.5亿美元估值飙升至200亿美元。科技突破频现——科学家在纳米尺度织出二维三轴分子布实现高效烃类分离、剑桥团队首次捕捉超量子湍流揭示量子涡旋纠缠或遍及中子星内核、人类复制体为专用引物酶导航破解DNA复制叉重启机制。国际政治上，第9届欧洲政治共同体峰会在都柏林举行聚焦安全与乌克兰、COP31世界领导人峰会在安塔利亚举行、第20届法语国家组织峰会在金边开幕聚焦和平与多边主义。
 
-能源气候与医疗健康各有进展：中广核浙江三澳核电4号机组主体工程开工、国际能源署称四季度全球石油市场转向供应过剩、国家能源局明确电力供应充裕度目标并勾勒&quot;十五五&quot;路线图；医疗方面84万人跨国研究登上《自然》指出肥胖诊断不能单凭BMI一刀切、刚果（金）埃博拉疫情病例突破1.1万成该国史上最致命疫情、中国原研CSF-1R抑制剂匹米替尼获FDA批准填补腱鞘巨细胞瘤治疗空白。半导体方面英特尔发布14A工艺PDK 0.9加速追赶台积电三星、AMD发布第六代EPYC&quot;Zen 6&quot;服务器处理器、存储芯片酝酿新一轮涨价HBM挤出效应显现；航天领域我国成功发射探源计划探路者卫星一箭四星、欧几里得望远镜发布首批重大数据绘制迄今最大宇宙三维地图、赫拉探测器传回双小行星系统最新近照；新品发布小米之外荣耀700系列、华为MateBook Fold S与亚马逊Ring Robotics产品线齐亮相；社会层面国航&quot;空轨联运&quot;落地大湾区、九部门联合发文支持实体书店、发改委前瞻应对学龄人口变化多渠道增加学位供给。" data-en="Today's digest spans thirteen domains - Trending, Military, Finance and Markets, Artificial Intelligence, Technology, International Politics, Industry and Business, Energy and Climate, Health and Medicine, Semiconductors and Hardware, Space and Aerospace, New Product Launch, and Society and Public Opinion - with three top stories in each. Online heat was led by esports and internet memes: BLG reversed GEN 3:1 to claim the S16 championship and Knight became the first Chinese mid-laner named FMVP, Seattle's &quot;viral raccoon&quot; Jimothy received death threats prompting fans to hide whereabouts, and the &quot;your RAM belongs in a data center&quot; joke earned Sam Altman the nickname &quot;Ram Altman.&quot; On the military front, India launched the fifth &quot;Coastal Vigil-26&quot; nationwide coastal-defense exercise, Poland took delivery of its final 2026 batch of Korean K2 tanks and K9 howitzers, and the US Army awarded a $4.1 billion contract to expand its Indirect Fire Protection Capability.
-
-Finance and AI advanced on separate fronts as US October CPI beat forecasts and lifted December Fed hike expectations, October PPI rose 6.5% year-on-year to a near four-year high, and the dollar index hit a 19-month high while the yen approached 160, raising intervention risk; in AI, Australia legislated mandatory frontier-AI safety duties with a dedicated regulator, Google DeepMind released AlphaGenome 2 pushing genetic-variant prediction to single-cell resolution, and AI training platform Mercor raised $750 million at a $20 billion valuation. Science breakthroughs kept coming as researchers wove a two-dimensional triaxial molecular mesh at the nanoscale for efficient hydrocarbon separation, a Cambridge team captured superquantum turbulence for the first time suggesting quantum vortex entanglement may pervade neutron-star interiors, and human replisomes were shown to guide a dedicated primase, cracking the DNA replication-fork restart mechanism. In international politics the 9th European Political Community Summit convened in Dublin focused on security and Ukraine, the COP31 World Leaders Summit was held in Antalya, and the 20th Francophonie Summit opened in Phnom Penh focusing on peace and multilateralism.
-
-Energy, climate, and health brought fresh developments: China General Nuclear began construction of the main works for Unit 4 at its San'ao nuclear plant in Zhejiang, the IEA said global oil markets would swing into surplus in Q4, and China's National Energy Administration set power-supply adequacy targets and sketched a 15th Five-Year Plan road map; in health, an 840,000-person multinational study in Nature argued obesity cannot be diagnosed by BMI alone, Ebola cases in the Democratic Republic of the Congo topped 11,000 in the country's deadliest outbreak, and China-originated CSF-1R inhibitor pimicotinib won FDA approval for tenosynovial giant cell tumor. In semiconductors Intel released its 14A process PDK 0.9 to catch up with TSMC and Samsung, AMD launched sixth-generation EPYC &quot;Zen 6&quot; server processors, and memory chips braced for a new price hike as HBM crowding-out effects emerged; in space China launched the Tan Yuan-pathfinder satellite on a four-in-one mission, the Euclid telescope released its first major data set producing the largest 3D map of the cosmos, and the Hera probe returned fresh close-ups of the double-asteroid system; new products included Honor's 700 series, Huawei's MateBook Fold S, and Amazon's Ring Robotics line; society watched Air China launch air-rail intermodal service in the Greater Bay Area, nine departments issue support for physical bookstores, and the NDRC move to expand high-school and university places amid shifting school-age demographics.">本日要闻覆盖上热搜、军事、财经、人工智能、科技、国际政治、产业商业、能源与气候、医疗健康、半导体与硬件、航天与空间、新产品发布、社会与舆情共十三个领域，各取三条。互联网热度由电竞与网络玩梗主导：BLG战队3:1逆转GEN夺得S16冠军、Knight成为史上首位中国籍FMVP中单，西雅图"网红浣熊"Jimothy收到死亡威胁引粉丝紧急隐去行踪，"你的内存该进数据中心"梗让Sam Altman被戏称"Ram Altman"。军事方面，印度启动第五届"海上警戒-26"全印海岸防御演习、波兰接收2026年最后一批韩国K2坦克与K9火炮、美国陆军授出41亿美元合同扩充"间接火力防护能力"。
+能源气候与医疗健康各有进展：中广核浙江三澳核电4号机组主体工程开工、国际能源署称四季度全球石油市场转向供应过剩、国家能源局明确电力供应充裕度目标并勾勒&amp;quot;十五五&amp;quot;路线图；医疗方面84万人跨国研究登上《自然》指出肥胖诊断不能单凭BMI一刀切、刚果（金）埃博拉疫情病例突破1.1万成该国史上最致命疫情、中国原研CSF-1R抑制剂匹米替尼获FDA批准填补腱鞘巨细胞瘤治疗空白。半导体方面英特尔发布14A工艺PDK 0.9加速追赶台积电三星、AMD发布第六代EPYC&amp;quot;Zen 6&amp;quot;服务器处理器、存储芯片酝酿新一轮涨价HBM挤出效应显现；航天领域我国成功发射探源计划探路者卫星一箭四星、欧几里得望远镜发布首批重大数据绘制迄今最大宇宙三维地图、赫拉探测器传回双小行星系统最新近照；新品发布小米之外荣耀700系列、华为MateBook Fold S与亚马逊Ring Robotics产品线齐亮相；社会层面国航&amp;quot;空轨联运&amp;quot;落地大湾区、九部门联合发文支持实体书店、发改委前瞻应对学龄人口变化多渠道增加学位供给。" data-en="本日要闻覆盖上热搜、军事、财经、人工智能、科技、国际政治、产业商业、能源与气候、医疗健康、半导体与硬件、航天与空间、新产品发布、社会与舆情共十三个领域，各取三条。互联网热度由电竞与网络玩梗主导：BLG战队3:1逆转GEN夺得S16冠军、Knight成为史上首位中国籍FMVP中单，西雅图&amp;quot;网红浣熊&amp;quot;Jimothy收到死亡威胁引粉丝紧急隐去行踪，&amp;quot;你的内存该进数据中心&amp;quot;梗让Sam Altman被戏称&amp;quot;Ram Altman&amp;quot;。军事方面，印度启动第五届&amp;quot;海上警戒-26&amp;quot;全印海岸防御演习、波兰接收2026年最后一批韩国K2坦克与K9火炮、美国陆军授出41亿美元合同扩充&amp;quot;间接火力防护能力&amp;quot;。
 
 财经与AI双线承压突破：美国10月CPI环比超预期推升美联储12月加息预期、10月PPI同比升至6.5%创近四年高位、美元指数升至19个月高位而日元逼近160关口触发干预警戒；AI领域澳大利亚立法强制前沿AI安全义务并设专责监管机构、谷歌DeepMind发布AlphaGenome 2将基因变异预测推进至单细胞分辨率、AI训练平台Mercor融资7.5亿美元估值飙升至200亿美元。科技突破频现——科学家在纳米尺度织出二维三轴分子布实现高效烃类分离、剑桥团队首次捕捉超量子湍流揭示量子涡旋纠缠或遍及中子星内核、人类复制体为专用引物酶导航破解DNA复制叉重启机制。国际政治上，第9届欧洲政治共同体峰会在都柏林举行聚焦安全与乌克兰、COP31世界领导人峰会在安塔利亚举行、第20届法语国家组织峰会在金边开幕聚焦和平与多边主义。
 
-能源气候与医疗健康各有进展：中广核浙江三澳核电4号机组主体工程开工、国际能源署称四季度全球石油市场转向供应过剩、国家能源局明确电力供应充裕度目标并勾勒"十五五"路线图；医疗方面84万人跨国研究登上《自然》指出肥胖诊断不能单凭BMI一刀切、刚果（金）埃博拉疫情病例突破1.1万成该国史上最致命疫情、中国原研CSF-1R抑制剂匹米替尼获FDA批准填补腱鞘巨细胞瘤治疗空白。半导体方面英特尔发布14A工艺PDK 0.9加速追赶台积电三星、AMD发布第六代EPYC"Zen 6"服务器处理器、存储芯片酝酿新一轮涨价HBM挤出效应显现；航天领域我国成功发射探源计划探路者卫星一箭四星、欧几里得望远镜发布首批重大数据绘制迄今最大宇宙三维地图、赫拉探测器传回双小行星系统最新近照；新品发布小米之外荣耀700系列、华为MateBook Fold S与亚马逊Ring Robotics产品线齐亮相；社会层面国航"空轨联运"落地大湾区、九部门联合发文支持实体书店、发改委前瞻应对学龄人口变化多渠道增加学位供给。</p>
+能源气候与医疗健康各有进展：中广核浙江三澳核电4号机组主体工程开工、国际能源署称四季度全球石油市场转向供应过剩、国家能源局明确电力供应充裕度目标并勾勒&amp;quot;十五五&amp;quot;路线图；医疗方面84万人跨国研究登上《自然》指出肥胖诊断不能单凭BMI一刀切、刚果（金）埃博拉疫情病例突破1.1万成该国史上最致命疫情、中国原研CSF-1R抑制剂匹米替尼获FDA批准填补腱鞘巨细胞瘤治疗空白。半导体方面英特尔发布14A工艺PDK 0.9加速追赶台积电三星、AMD发布第六代EPYC&amp;quot;Zen 6&amp;quot;服务器处理器、存储芯片酝酿新一轮涨价HBM挤出效应显现；航天领域我国成功发射探源计划探路者卫星一箭四星、欧几里得望远镜发布首批重大数据绘制迄今最大宇宙三维地图、赫拉探测器传回双小行星系统最新近照；新品发布小米之外荣耀700系列、华为MateBook Fold S与亚马逊Ring Robotics产品线齐亮相；社会层面国航&amp;quot;空轨联运&amp;quot;落地大湾区、九部门联合发文支持实体书店、发改委前瞻应对学龄人口变化多渠道增加学位供给。">本日要闻覆盖上热搜、军事、财经、人工智能、科技、国际政治、产业商业、能源与气候、医疗健康、半导体与硬件、航天与空间、新产品发布、社会与舆情共十三个领域，各取三条。互联网热度由电竞与网络玩梗主导：BLG战队3:1逆转GEN夺得S16冠军、Knight成为史上首位中国籍FMVP中单，西雅图&amp;quot;网红浣熊&amp;quot;Jimothy收到死亡威胁引粉丝紧急隐去行踪，&amp;quot;你的内存该进数据中心&amp;quot;梗让Sam Altman被戏称&amp;quot;Ram Altman&amp;quot;。军事方面，印度启动第五届&amp;quot;海上警戒-26&amp;quot;全印海岸防御演习、波兰接收2026年最后一批韩国K2坦克与K9火炮、美国陆军授出41亿美元合同扩充&amp;quot;间接火力防护能力&amp;quot;。
+
+财经与AI双线承压突破：美国10月CPI环比超预期推升美联储12月加息预期、10月PPI同比升至6.5%创近四年高位、美元指数升至19个月高位而日元逼近160关口触发干预警戒；AI领域澳大利亚立法强制前沿AI安全义务并设专责监管机构、谷歌DeepMind发布AlphaGenome 2将基因变异预测推进至单细胞分辨率、AI训练平台Mercor融资7.5亿美元估值飙升至200亿美元。科技突破频现——科学家在纳米尺度织出二维三轴分子布实现高效烃类分离、剑桥团队首次捕捉超量子湍流揭示量子涡旋纠缠或遍及中子星内核、人类复制体为专用引物酶导航破解DNA复制叉重启机制。国际政治上，第9届欧洲政治共同体峰会在都柏林举行聚焦安全与乌克兰、COP31世界领导人峰会在安塔利亚举行、第20届法语国家组织峰会在金边开幕聚焦和平与多边主义。
+
+能源气候与医疗健康各有进展：中广核浙江三澳核电4号机组主体工程开工、国际能源署称四季度全球石油市场转向供应过剩、国家能源局明确电力供应充裕度目标并勾勒&amp;quot;十五五&amp;quot;路线图；医疗方面84万人跨国研究登上《自然》指出肥胖诊断不能单凭BMI一刀切、刚果（金）埃博拉疫情病例突破1.1万成该国史上最致命疫情、中国原研CSF-1R抑制剂匹米替尼获FDA批准填补腱鞘巨细胞瘤治疗空白。半导体方面英特尔发布14A工艺PDK 0.9加速追赶台积电三星、AMD发布第六代EPYC&amp;quot;Zen 6&amp;quot;服务器处理器、存储芯片酝酿新一轮涨价HBM挤出效应显现；航天领域我国成功发射探源计划探路者卫星一箭四星、欧几里得望远镜发布首批重大数据绘制迄今最大宇宙三维地图、赫拉探测器传回双小行星系统最新近照；新品发布小米之外荣耀700系列、华为MateBook Fold S与亚马逊Ring Robotics产品线齐亮相；社会层面国航&amp;quot;空轨联运&amp;quot;落地大湾区、九部门联合发文支持实体书店、发改委前瞻应对学龄人口变化多渠道增加学位供给。</p>
     <p style="margin-top:12px;font-size:.85em;">图片来源：本地实拍 + Wikimedia / Openverse 等多条 CC 授权线路，自动选用最快线路（离线始终有图）；语音由浏览器 Web Speech API 生成，播放器可一键开启「AI 语音增强」选用云端神经语音。</p>
   </div>
 
-  <div class="article-note" id="disclaimerBox"><p data-zh="以上内容根据公开报道整理，仅供快速了解事件脉络。建议结合多家权威媒体与官方通报交叉核实，以获取更完整、准确的信息。我们将持续关注事态进展，并在后续更新中补充关键变化与影响。本条信息仅供参考，不构成任何投资、决策或行动建议，请以权威发布为准。" data-en="The above is compiled from public reports to help you quickly grasp the event context. We recommend cross-checking with multiple authoritative media and official statements for completeness and accuracy. We will keep monitoring developments and add key changes and impacts in later updates. This information is for reference only and does not constitute investment, decision, or action advice; please rely on authoritative releases.">以上内容根据公开报道整理，仅供快速了解事件脉络。建议结合多家权威媒体与官方通报交叉核实，以获取更完整、准确的信息。我们将持续关注事态进展，并在后续更新中补充关键变化与影响。本条信息仅供参考，不构成任何投资、决策或行动建议，请以权威发布为准。</p></div>
+  <div class="article-note" id="disclaimerBox"><p data-zh="内容由 AI 生成，仅供参考。" data-en="AI generated, for reference only.">内容由 AI 生成，仅供参考。</p></div>
 </div>
 
 <!-- Settings -->
@@ -4632,5 +4670,76 @@ var safeLS = (function() {
   <script src="scroll-keys.js?v=20260926c" defer></script>
   <script src="news-filter.js?v=20261108c" defer></script>
   <script src="assets/ui-kit.js?v=20261109a" data-uikit="top,share,lazy,keys,skeleton,sw"></script>
+
+<script>
+/* ===== 阅读进度条 + 分类目录（体验增强，独立于主脚本） ===== */
+(function(){
+  'use strict';
+  var bar = document.getElementById('readProgress');
+  var fab = document.getElementById('tocFab');
+  var panel = document.getElementById('tocPanel');
+
+  // 阅读进度
+  function updateProgress(){
+    if(!bar) return;
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    bar.style.width = (p<0?0:p>100?100:p) + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // 分类目录：运行时扫描 section-card，标题取当前 DOM 文本（自动跟随语言）
+  function titleOf(card){
+    var t = card.querySelector('.section-title');
+    if(!t) return '';
+    var s = (t.innerText || t.textContent || '').replace(/\s+/g,' ').trim();
+    return s || '分类';
+  }
+  function buildToc(){
+    if(!panel) return;
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.section-card'));
+    if(!cards.length) return;
+    var h = '<div class="toc-h">' + (document.documentElement.lang==='en' ? 'Sections' : '分类目录') + '</div>';
+    cards.forEach(function(c){
+      if(!c.id) return;
+      h += '<a href="#' + c.id + '" data-target="' + c.id + '">' + titleOf(c) + '</a>';
+    });
+    panel.innerHTML = h;
+    if(fab) fab.classList.add('show');
+  }
+  // 页面内容可能延迟渲染，尝试多次直到拿到分类
+  var tries = 0;
+  var t = setInterval(function(){
+    buildToc();
+    if(document.querySelectorAll('.section-card').length || ++tries > 20) clearInterval(t);
+  }, 300);
+
+  if(fab && panel){
+    fab.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = panel.classList.toggle('open');
+      if(open) buildToc(); // 打开时刷新标题（语言切换后同步）
+    });
+    panel.addEventListener('click', function(e){
+      var a = e.target.closest('a[data-target]');
+      if(!a) return;
+      e.preventDefault();
+      var el = document.getElementById(a.getAttribute('data-target'));
+      if(el){
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        Array.prototype.forEach.call(panel.querySelectorAll('a'), function(x){x.classList.remove('active');});
+        a.classList.add('active');
+      }
+      panel.classList.remove('open');
+    });
+    document.addEventListener('click', function(e){
+      if(!panel.contains(e.target) && e.target!==fab && !fab.contains(e.target)) panel.classList.remove('open');
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
