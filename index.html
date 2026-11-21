@@ -234,8 +234,9 @@
   /* 新闻主页底部右侧：前往新闻测试版 + 千万别点（恶搞跳转） */
   /* 容器本身不可见，仅是定位层；每个按钮各自是独立卡片 */
   .home-actions {
-    position: fixed; right: 16px; bottom: 16px; z-index: 20;
-    display: flex; gap: 28px; align-items: center;
+    /* 放左下、位于返回主站之上，避开右下角 ui-kit 的分享/返回顶部 dock */
+    position: fixed; left: 16px; bottom: 58px; z-index: 20;
+    display: flex; gap: 16px; align-items: center;
   }
   .home-actions .action-btn {
     font-size: 13px; font-weight: 700; color: #000; text-decoration: none;
@@ -246,8 +247,8 @@
   }
   .home-actions .action-btn:hover { text-decoration: underline; }
   @media (max-width: 480px) {
-    .home-actions { right: 10px; bottom: 10px; gap: 16px; }
-    .home-actions .action-btn { font-size: 12px; padding: 7px 12px; }
+    .home-actions { left: 10px; bottom: 48px; gap: 8px; }
+    .home-actions .action-btn { font-size: 12px; padding: 7px 11px; }
   }
 
   /* 左下角：返回主站 */
@@ -445,6 +446,41 @@ img.xl-fade.loaded { opacity: 1; }
       </div>
       <div class="hs-hint">在最新一期页面内按标题 / 正文 / 来源筛选，支持分类切换</div>
     </div>
+
+    <!-- 今日速览：异步抓取最新一期分类与头条，填充首屏 -->
+    <section class="glance" id="glance" aria-label="今日速览">
+      <style>
+        .glance { margin: 22px 0 8px; }
+        .glance-card { display: block; text-decoration: none; color: var(--text);
+          background: var(--card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+          border: 1px solid var(--border); border-radius: var(--radius);
+          padding: 18px 20px; box-shadow: 0 4px 18px var(--shadow); transition: transform .15s, box-shadow .15s; }
+        .glance-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,.16); }
+        .glance-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
+        .glance-title { font-size: 1.05em; font-weight: 800; display: inline-flex; align-items: center; gap: 8px; }
+        .glance-title i { width: 18px; height: 18px; }
+        .glance-date { font-size: .8em; color: var(--sub); }
+        .glance-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 14px; }
+        .glance-item { min-width: 0; }
+        .glance-cat { font-size: .74em; font-weight: 700; color: var(--accent);
+          display: inline-block; padding: 2px 8px; border-radius: 999px;
+          background: color-mix(in srgb, var(--accent) 12%, transparent); margin-bottom: 4px; }
+        .glance-news { font-size: .84em; line-height: 1.4; overflow: hidden; text-overflow: ellipsis;
+          display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; opacity: .9; }
+        .glance-more { margin-top: 14px; font-size: .82em; color: var(--accent); font-weight: 700; }
+        .glance-skel { color: var(--sub); font-size: .85em; padding: 8px 0; }
+        @media (max-width: 479px) { .glance-grid { grid-template-columns: 1fr; } .glance-card { padding: 16px; } }
+      </style>
+      <a class="glance-card" id="glanceCard" href="dev-area.html">
+        <div class="glance-head">
+          <span class="glance-title"><i class="ic" data-ic="bolt" aria-hidden="true"></i><span id="glanceLabel">今日速览</span></span>
+          <span class="glance-date" id="glanceDate"></span>
+        </div>
+        <div id="glanceBody"><div class="glance-skel">正在加载今日要闻…</div></div>
+        <div class="glance-more" id="glanceMore">查看完整一期 →</div>
+      </a>
+    </section>
+
     <div class="list" id="dayList">
       <!-- 动态生成 -->
     </div>
@@ -587,7 +623,7 @@ img.xl-fade.loaded { opacity: 1; }
     </div>
 
     <!-- 前往每日新闻 -->
-    <a class="bottom-link" id="gotoNews" href="2026-11-21.html" target="_blank" rel="noopener">前往每日新闻设置 →</a>
+    <a class="bottom-link" id="gotoNews" href="dev-area.html" target="_blank" rel="noopener">前往每日新闻 →</a>
     </div><!-- /settings-scroll -->
 
     <div class="settings-footer">
@@ -1318,5 +1354,69 @@ img.xl-fade.loaded { opacity: 1; }
 })();
 </script>
   <script src="assets/ui-kit.js?v=20261109a" data-uikit="top,share,lazy,keys,skeleton,sw"></script>
+
+<script>
+/* ===== 今日速览：抓取最新一期分类与头条填充首屏 ===== */
+(function(){
+  'use strict';
+  var body = document.getElementById('glanceBody');
+  var dateEl = document.getElementById('glanceDate');
+  var card = document.getElementById('glanceCard');
+  var more = document.getElementById('glanceMore');
+  var label = document.getElementById('glanceLabel');
+  var isEn = /^en\b/i.test(document.documentElement.lang || '');
+  if(isEn && label) label.textContent = "Today's Highlights";
+  if(isEn && more) more.textContent = 'Read the full edition →';
+
+  function esc(x){ var d=document.createElement('div'); d.textContent=x||''; return d.innerHTML; }
+
+  // 6 秒总超时：慢网络下不永久停在“正在加载”，降级为可点击的兜底文案
+  var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+  var timer = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 6000);
+  var sig = ctrl ? { signal: ctrl.signal } : {};
+  fetch('dates.json', Object.assign({cache:'no-store'}, sig))
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .then(function(m){
+      var arr = (m && Array.isArray(m.dates)) ? m.dates : [];
+      if(!arr.length) throw new Error('no dates');
+      var latest = arr[0];
+      var file = latest.file, date = latest.date;
+      if(card) card.href = file;
+      if(dateEl) dateEl.textContent = date;
+      return fetch(file, Object.assign({cache:'force-cache'}, sig)).then(function(r){
+        if(!r.ok) throw new Error('fetch edition failed');
+        return r.text();
+      }).then(function(html){
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var secs = Array.prototype.slice.call(doc.querySelectorAll('.section-card')).slice(0, 6);
+        var out = '';
+        function clean(el){
+          if(!el) return '';
+          var c = el.cloneNode(true);
+          c.querySelectorAll('button, .ic, svg, .fold-btn, .zoom-btn, .fs-btn, .tts-btn').forEach(function(b){ b.remove(); });
+          return (c.innerText || c.textContent || '').replace(/[▼▲□▢◧▣]/g,'').replace(/\s+/g,' ').trim();
+        }
+        secs.forEach(function(sec){
+          var t = sec.querySelector('.section-title');
+          var it = sec.querySelector('.item-title');
+          var cat = clean(t) || (t ? (t.getAttribute('data-zh')||'') : '');
+          var title = clean(it);
+          if(!cat && !title) return;
+          out += '<div class="glance-item"><span class="glance-cat">' + esc(cat) + '</span>' +
+                 '<div class="glance-news">' + esc(title || (isEn?'See full edition':'详见完整一期')) + '</div></div>';
+        });
+        if(!out) throw new Error('no sections parsed');
+        body.innerHTML = '<div class="glance-grid">' + out + '</div>';
+      });
+    })
+    .catch(function(){
+      if(timer) clearTimeout(timer);
+      body.innerHTML = '<div class="glance-skel">' +
+        (isEn ? 'Open the latest edition to explore today’s top stories.' : '打开最新一期，浏览今日全球要闻。') + '</div>';
+    })
+    .then(function(){ if(timer) clearTimeout(timer); });
+})();
+</script>
+
 </body>
 </html>
