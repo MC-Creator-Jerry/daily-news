@@ -1,4 +1,4 @@
-/* ui-kit.js 20261109a — 跨站通用 UI 增强（同步自 _shared/ui-kit/ui-kit.js）
+/* ui-kit.js 20261121b — 跨站通用 UI 增强（同步自 _shared/ui-kit/ui-kit.js）
    由页面 <script data-uikit="..."> 配置启用的能力；默认全开。
    能力：top 返回顶部 / share 分享 / notif 跨站未读红点 / lazy 图片懒加载
         keys Ctrl+/ 快捷键帮助 / skeleton 加载中骨架 / sw Service Worker 注册
@@ -37,7 +37,14 @@
       '.' + NS + 'sk{display:block;height:14px;margin:8px 0;border-radius:6px;background:linear-gradient(90deg,rgba(127,127,127,.13) 25%,rgba(127,127,127,.26) 37%,rgba(127,127,127,.13) 63%);background-size:400% 100%;animation:' + NS + 'sh 1.3s ease infinite}' +
       '@keyframes ' + NS + 'sh{0%{background-position:100% 50%}100%{background-position:0 50%}}' +
       '.' + NS + 'sk:nth-child(2){width:82%}.' + NS + 'sk:nth-child(3){width:64%}' +
-      '@media (max-width:600px){.' + NS + 'dock{right:10px;bottom:10px}}';
+      '@media (max-width:600px){.' + NS + 'dock{right:10px;bottom:10px}}' +
+      /* 顶栏通知铃铛（融入各站 topbar，纯铃铛图标 + 红角标，无文字） */
+      '.' + NS + 'notif{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0;border:0;background:transparent;color:inherit;cursor:pointer;border-radius:8px;position:relative;vertical-align:middle}' +
+      '.' + NS + 'notif:hover{background:rgba(127,127,127,.14)}' +
+      '.' + NS + 'notif svg{width:19px;height:19px;flex:none}' +
+      '.' + NS + 'notif .' + NS + 'dot{position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;line-height:16px;border-radius:9px;background:#e0393e;color:#fff;font-size:10px;font-weight:700;text-align:center;padding:0 3px;box-shadow:0 0 0 2px rgba(255,255,255,.85)}' +
+      '@media (prefers-color-scheme:dark){.' + NS + 'notif .' + NS + 'dot{box-shadow:0 0 0 2px rgba(32,34,40,.9)}}' +
+      '.' + NS + 'notif[hidden]{display:none}';
     document.head.appendChild(s);
   }
 
@@ -55,22 +62,46 @@
     return b;
   }
 
+  /* ---------- 顶栏通知铃铛 ----------
+     学小蓝页：铃铛放在顶栏、仅图标+红点无文字。各站顶栏 class 不一，
+     按优先级探测锚点容器；铃铛插在登录槽之前作为兄弟节点（不被登录渲染覆盖）。
+     找不到锚点则回退到浮动 dock（保底，不让通知入口消失）。 */
+  var ANCHORS = [
+    '.tea-auth-slot',   // 茶馆：登录槽，铃铛插它前面
+    '#bsAuthBox',       // 书栈
+    '#authArea',        // 日历
+    '#hdrRight',        // 片屿、音乐、启动台：登录槽
+    '#loginBtn',        // 通用兜底（小蓝页等）
+    '.bar-right > a:last-child' // 最后兜底
+  ];
+  function mountTopNotif(node) {
+    for (var i = 0; i < ANCHORS.length; i++) {
+      var ref = document.querySelector(ANCHORS[i]);
+      if (ref && ref.parentNode && ref.parentNode !== document.body) {
+        ref.parentNode.insertBefore(node, ref);
+        return true;
+      }
+    }
+    return false;
+  }
+  function topbarNotif() {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = NS + 'notif';
+    b.innerHTML = ICON.bell;
+    b.title = '查看本站通知';
+    b.setAttribute('aria-label', '查看通知');
+    b.addEventListener('click', function () { location.href = '/notice/'; });
+    return b;
+  }
+
   /* ---------- 浮动按钮组 ---------- */
   function dock() {
-    var need = on('top') || on('share') || on('notif');
+    var need = on('top') || on('share');
     if (!need) return null;
     var d = document.createElement('div');
     d.className = NS + 'dock';
 
-    var notif = null;
-    if (on('notif')) {
-      notif = btn('bell', '消息');
-      notif.hidden = true;
-      notif.title = '查看小蓝页消息中心';
-      notif.setAttribute('aria-label', '查看消息中心');
-      notif.addEventListener('click', function () { location.href = HOME + '/notice/'; });
-      d.appendChild(notif);
-    }
     if (on('share') && !document.querySelector('#shareBtn,#shareFab,#pbCopyLink,[data-share]')) {
       var sh = btn('share', '分享');
       sh.title = '分享本页'; sh.setAttribute('aria-label', '分享本页');
@@ -92,7 +123,7 @@
     }
     if (!d.children.length) return null;
     document.body.appendChild(d);
-    return { notif: notif };
+    return null;
   }
 
   /* ---------- 跨站未读红点 ---------- */
@@ -117,25 +148,17 @@
     } catch (e) {}
     return '';
   }
-  function loadUnread(node) {
+  function loadUnread(node, text) {
     if (!node) return;
-    var go = function (login) {
-      if (!login) return;
-      fetch(HOME + '/api/notif/count?login=' + encodeURIComponent(login), { credentials: 'omit' })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          var n = Number(d && d.unread) || 0;
-          if (n <= 0) return;
-          node.hidden = false;
-          node.innerHTML = ICON.bell + '<span>消息</span><span class="' + NS + 'dot">' + (n > 99 ? '99+' : n) + '</span>';
-        }).catch(function () {});
-    };
-    var g = globalsLogin();
-    if (g) { go(g); return; }
-    fetch('/api/me', { credentials: 'same-origin' })
+    // 本站通知未读数（本站 /api/notif 代理只返回本站通知；小蓝页 /notice/ 才混合全部）。
+    fetch('/api/notif', { credentials: 'same-origin' })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (d) { go(pickLogin(d)); })
-      .catch(function () {});
+      .then(function (d) {
+        var n = d && d.unread ? Number(d.unread) : 0;
+        if (n <= 0) return;
+        node.hidden = false;
+        node.innerHTML = ICON.bell + (text ? '<span>消息</span>' : '') + '<span class="' + NS + 'dot">' + (n > 99 ? '99+' : n) + '</span>';
+      }).catch(function () {});
   }
 
   /* ---------- 图片懒加载 ---------- */
@@ -197,8 +220,27 @@
 
   function boot() {
     css();
-    var d = dock();
-    if (on('notif')) loadUnread(d && d.notif);
+    var notifNode = null;
+    if (on('notif')) {
+      var nb = topbarNotif();
+      if (mountTopNotif(nb)) {
+        notifNode = nb; // 顶栏铃铛常显，红点由未读决定
+      } else {
+        // 找不到顶栏锚点 → 回退浮动（保底，不丢通知入口）
+        var d = document.createElement('div');
+        d.className = NS + 'dock';
+        var fb = btn('bell', '消息');
+        fb.hidden = true;
+        fb.title = '查看本站通知';
+        fb.setAttribute('aria-label', '查看通知');
+        fb.addEventListener('click', function () { location.href = '/notice/'; });
+        d.appendChild(fb);
+        document.body.appendChild(d);
+        notifNode = fb;
+      }
+      loadUnread(notifNode, notifNode !== nb); // 顶栏=纯铃铛+红点；浮动=带文字
+    }
+    dock();
     if (on('lazy')) lazy();
     if (on('skeleton')) skeleton();
     if (on('keys')) keys();
